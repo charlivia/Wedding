@@ -567,16 +567,28 @@
             .couple-name-container {
                 width: 320px;
             }
-            /* ★ 手機版第二屏卡片：維持原始大小並絕對置中對齊 (margin: 0 auto) */
+            
+            /* ★ 關鍵修改：僅將手機版第二屏底圖 (img) 放大 10% 且外層維持絕對置中 */
             .countdown-card-wrapper {
-                max-width: 100%;
+                position: relative;
                 width: 100%;
+                max-width: 100%;
                 margin: 0 auto;
+                overflow: hidden; /* 確保放大時超出邊界的部分被裁切包覆，維持乾淨整潔 */
             }
+            .countdown-card-img {
+                width: 110%; /* 底圖本身放大 10% */
+                max-width: 110%;
+                transform: translateX(-4.5%); /* 完美置中補償 */
+                height: auto;
+                display: block;
+            }
+
+            /* 手機版：文字與倒數組件保持原本的相對位置與大小不動 */
             .countdown-static-text {
                 top: 13%;
                 left: 15%; 
-                font-size: 0.85rem;
+                font-size: 15px; 
             }
             .countdown-timer-box {
                 top: 25%;
