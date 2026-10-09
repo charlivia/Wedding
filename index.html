@@ -115,17 +115,6 @@
             text-align: center;
         }
 
-        .couple-name-container {
-            width: 420px; 
-            max-width: 90%;
-            margin-bottom: 35px;
-        }
-        .couple-name-img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
         .countdown-card-wrapper {
             position: relative;
             width: 100%;
@@ -564,9 +553,6 @@
             .countdown-section {
                 padding: 40px 15px;
             }
-            .couple-name-container {
-                width: 320px;
-            }
             .countdown-card-wrapper {
                 max-width: 100%;
                 width: 100%;
@@ -577,7 +563,6 @@
                 left: 13%; 
                 font-size: 15px; 
             }
-            /* ★ 手機版第二屏倒數組件：整組等比例縮小 10% (transform-origin 設為左上角以對齊定位) */
             .countdown-timer-box {
                 top: 25%;
                 left: 13%; 
@@ -636,13 +621,9 @@
 
     <!-- 第二屏：復古雜誌倒數計時卡片 -->
     <section class="countdown-section">
-        <div class="couple-name-container">
-            <img src="https://github.com/user-attachments/assets/457950da-8793-445a-97e8-773dbd364b78" alt="黃彥齊 詹婷伃" class="couple-name-img">
-        </div>
-
         <div class="countdown-card-wrapper">
             <!-- 採用 <img> 滿版呈現底圖 -->
-            <img src="https://github.com/user-attachments/assets/9a938a18-c5e7-48d9-a251-a5dd4428e0b8" alt="Card Background" class="countdown-card-img" id="cardBgImg">
+            <img src="https://github.com/user-attachments/assets/08c35491-9c88-4c70-9442-ca1abc496aa1" alt="Card Background" class="countdown-card-img" id="cardBgImg">
 
             <div class="countdown-static-text">
                 我們想把一些珍貴片段重新翻開<br>距離這一天，還有
@@ -864,9 +845,9 @@
         function updateCardImage() {
             const cardImg = document.getElementById('cardBgImg');
             if (window.innerWidth <= 768) {
-                cardImg.src = 'https://github.com/user-attachments/assets/4083a37b-214c-4c02-8009-ef19244397a3'; // 手機版底圖
+                cardImg.src = 'https://github.com/user-attachments/assets/793f7025-9789-4826-9b2a-1969a8dccfdd'; // 手機版新底圖
             } else {
-                cardImg.src = 'https://github.com/user-attachments/assets/9a938a18-c5e7-48d9-a251-a5dd4428e0b8'; // PC版底圖
+                cardImg.src = 'https://github.com/user-attachments/assets/08c35491-9c88-4c70-9442-ca1abc496aa1'; // PC版新底圖
             }
         }
         window.addEventListener('resize', updateCardImage);
