@@ -83,7 +83,7 @@
             display: block;
         }
 
-        /* 第一屏 PC 版標語：維持白色、15px、font-weight: 700 確保醒目與質感，white-space 確保單行不斷行 */
+        /* 第一屏 PC 版標語 */
         .hero-quote-pc {
             position: absolute;
             bottom: 6vh;
@@ -138,7 +138,7 @@
             display: block;
         }
 
-        /* PC版：靜態文案往左移 30px (left從200px改回170px) */
+        /* PC版：靜態文案 (left: 170px) */
         .countdown-static-text {
             position: absolute;
             top: 75px;
@@ -151,7 +151,7 @@
             line-height: 1.6;
         }
 
-        /* PC版：倒數模組往左移 30px (left從200px改回170px) */
+        /* PC版：倒數模組 (left: 170px) */
         .countdown-timer-box {
             position: absolute;
             top: 135px; 
@@ -527,7 +527,8 @@
         /* ========================================= */
         @media (max-width: 768px) {
             .hero {
-                background-image: url('https://github.com/user-attachments/assets/858aba5f-e9c3-4c7a-93ce-d44421662dd1');
+                background-image: url('https://github.com/user-attachments/assets/d0c17b1d-7f5b-446c-abac-0825c46b1cf9');
+                background-size: cover;
                 background-position: center center;
                 height: 100vh; 
             }
@@ -546,7 +547,6 @@
             .hero-quote-pc {
                 display: none; 
             }
-            /* 第一屏手機版標語：維持白色、15px、font-weight: 700，以及兩行斷行邏輯 */
             .hero-quote-mobile {
                 position: absolute;
                 bottom: 5vh;
@@ -567,8 +567,11 @@
             .couple-name-container {
                 width: 320px;
             }
+            /* ★ 手機版第二屏卡片：維持原始大小並絕對置中對齊 (margin: 0 auto) */
             .countdown-card-wrapper {
                 max-width: 100%;
+                width: 100%;
+                margin: 0 auto;
             }
             .countdown-static-text {
                 top: 13%;
