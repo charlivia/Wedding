@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charlie & Livia Wedding</title>
-    <!-- 引入 Noto Serif TC, Cormorant Garamond, 以及手寫體 Calligraffitti -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+TC:wght@400;500;700&family=Calligraffitti&display=swap" rel="stylesheet">
+    <!-- 引入 Forum, Noto Serif TC, Cormorant Garamond 字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+TC:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --primary: rgb(212, 163, 115);   
             --secondary: #8da399; 
             --bg: #fcfbf9;        
-            --text-dark: #4a4a4a;
+            --text-dark: #333333; 
             --text-light: #7a7a7a;
             --border-color: #e5e5e5;
+            --countdown-red: #770000; /* 指定的倒數數字色號 */
         }
 
         * {
@@ -38,182 +39,156 @@
         }
 
         /* ========================================= */
-        /* 1. 導航列 */
-        /* ========================================= */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(252, 251, 249, 0.95);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.03); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 12px 50px; 
-        }
-
-        .nav-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600; 
-            font-size: 20px; 
-            color: var(--primary); 
-            text-decoration: none;
-            letter-spacing: 4px; 
-        }
-
-        .nav-mobile-date {
-            display: none; 
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 400; 
-            font-size: 16px; 
-            color: var(--primary); 
-            letter-spacing: 3px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 40px; 
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #8c979d; 
-            font-family: 'Noto Serif TC', serif;
-            font-weight: 700; 
-            font-size: 11.5px; 
-            letter-spacing: 2px; 
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center; 
-        }
-
-        nav a span.en {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600; 
-            font-size: 10px; 
-            line-height: 15px; 
-            margin-left: 6px; 
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        nav a:hover, nav a:hover span.en, nav a:active {
-            color: var(--primary); 
-        }
-
-        /* ========================================= */
-        /* 2. 首頁全螢幕封面 */
+        /* 1. 第一屏封面 (KV 區) */
         /* ========================================= */
         .hero {
             height: 100vh;
-            background-image: url('https://github.com/user-attachments/assets/4a99f9fa-a563-4833-ba0b-2bc74dc8745c');
+            background-image: url('https://github.com/user-attachments/assets/39e2f224-7c6a-4d9c-af32-83fd4557359a');
             background-size: cover;
-            background-position: center 35%; 
+            background-position: center center; 
             display: flex;
             flex-direction: column;
-            justify-content: center; 
+            justify-content: flex-start; 
             align-items: center;
             text-align: center;
             position: relative;
         }
 
-        .hero::after {
-            content: '';
+        .hero-top-title {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.35); 
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            color: white;
-            width: 100%;
-            transform: translateY(-8%); 
-        }
-
-        .hero-content p.date {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem; 
-            letter-spacing: 8px; 
-            margin-bottom: 35px; 
-            text-transform: uppercase;
-        }
-
-        .hero-content h1 {
-            font-family: 'Calligraffitti', cursive; 
-            font-size: 6rem; 
-            font-weight: 400;  
-            letter-spacing: 2px;
-            margin: 0 0 15px 0; 
-            line-height: 1.1;
-        }
-
-        .hero-content p.quote {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 16px; 
-            font-weight: 500; 
-            letter-spacing: 4px; 
-            color: #ffffff; 
-            margin: 0; 
-        }
-
-        /* ========================================= */
-        /* 3. 倒數計時器 (預設 PC 版：固定在底部) */
-        /* ========================================= */
-        .hero-countdown-wrapper {
-            position: absolute;
-            bottom: 8vh; 
+            top: 3vh; 
             left: 0;
             width: 100%;
             z-index: 2;
+            font-family: 'Forum', serif; 
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            color: #ffffff;
+            font-weight: 400;
         }
 
-        /* 手機版倒數容器預設隱藏，透過 Media Query 控制 */
-        .hero-countdown-mobile {
-            display: none;
+        .hero-date-container {
+            position: absolute;
+            top: 42%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 140px; 
+            max-width: 80%;
         }
 
-        .hero-countdown-timer {
-            font-family: 'Cormorant Garamond', serif;
+        .hero-date-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 第一屏 PC 版標語：維持白色、15px、font-weight: 700 確保醒目與質感，white-space 確保單行不斷行 */
+        .hero-quote-pc {
+            position: absolute;
+            bottom: 6vh;
+            right: 5vw;
+            z-index: 2;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 15px; 
+            font-weight: 700;  
+            color: #ffffff;
+            text-align: right;
+            line-height: 1.6;
+            white-space: nowrap;
+            display: block; 
+        }
+
+        .hero-quote-mobile {
+            display: none; 
+        }
+
+        /* ========================================= */
+        /* 2. 第二屏：復古雜誌倒數計時卡片區塊 (PC版完美定位) */
+        /* ========================================= */
+        .countdown-section {
+            padding: 90px 20px;
+            background-color: var(--bg);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
+            text-align: center;
         }
 
-        .hero-countdown-timer .num {
-            font-size: 2.2rem;
+        .couple-name-container {
+            width: 420px; 
+            max-width: 90%;
+            margin-bottom: 35px;
+        }
+        .couple-name-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .countdown-card-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1100px; 
+        }
+
+        .countdown-card-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* PC版：靜態文案往左移 30px (left從200px改回170px) */
+        .countdown-static-text {
+            position: absolute;
+            top: 75px;
+            left: 170px; 
+            text-align: left;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 15px; 
+            font-weight: 700;  
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* PC版：倒數模組往左移 30px (left從200px改回170px) */
+        .countdown-timer-box {
+            position: absolute;
+            top: 135px; 
+            left: 170px; 
+            display: flex;
+            gap: 38px; 
+            align-items: flex-end;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .countdown-item {
+            text-align: center; 
+            min-width: 55px; 
+        }
+
+        .countdown-num {
+            font-size: 52px; 
             font-weight: 600;
-            color: #ffffff; 
+            color: var(--countdown-red); /* #770000 */
+            line-height: 1;
+            font-variant-numeric: tabular-nums; 
         }
 
-        .hero-countdown-timer .unit {
-            font-size: 0.95rem;
+        .countdown-label {
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: rgba(255, 255, 255, 0.8); 
-            margin-left: 3px;
+            color: var(--countdown-red);
+            margin-top: 6px;
             font-weight: 600;
-        }
-
-        .hero-countdown-timer .divider {
-            color: rgba(255, 255, 255, 0.4); 
-            margin: 0 10px;
-            font-weight: 300;
-            font-size: 1.5rem;
         }
 
         /* ========================================= */
         /* 共用與其他區塊 */
         /* ========================================= */
         .section-container {
-            padding: 100px 20px 40px 20px; 
+            padding: 60px 20px 40px 20px; 
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
@@ -227,7 +202,7 @@
         }
 
         /* ========================================= */
-        /* 4. 婚禮詳情 (卡片式設計) */
+        /* 3. 婚禮詳情 (卡片式設計) */
         /* ========================================= */
         .title-group {
             margin-bottom: 50px;
@@ -275,6 +250,9 @@
 
         .card-header {
             margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
         }
 
         .card-title-group h3 {
@@ -385,7 +363,7 @@
         }
 
         /* ========================================= */
-        /* 5. 出席回函 (卡片式設計) */
+        /* 4. 出席回函 (卡片式設計) */
         /* ========================================= */
         .rsvp-card {
             background-color: #ffffff;
@@ -545,56 +523,73 @@
         }
 
         /* ========================================= */
-        /* 手機版微調 */
+        /* 手機版專屬優化 (RWD) */
         /* ========================================= */
         @media (max-width: 768px) {
-            nav {
-                padding: 12px 25px; 
-                flex-direction: row; 
-                justify-content: space-between;
-            }
-            nav ul { display: none; }
-            .nav-mobile-date { display: block; }
-
             .hero {
-                background-image: url('https://github.com/user-attachments/assets/be10fff6-4a16-4e59-81c6-bf83facfa814');
-                background-position: center 5%;
+                background-image: url('https://github.com/user-attachments/assets/858aba5f-e9c3-4c7a-93ce-d44421662dd1');
+                background-position: center center;
                 height: 100vh; 
             }
 
-            .hero-content { transform: translateY(-2%); } 
-            
-            .hero-content p.date { 
-                font-size: 1.1rem; 
-                letter-spacing: 6px; 
-                margin-bottom: 25px; 
-            } 
-            
-            .hero-content h1 { 
-                font-size: 3.2rem; 
-                white-space: nowrap; 
-                margin: 0 0 10px 0; 
+            .hero-top-title {
+                top: 4vh; 
+                font-size: 1.2rem;
             }
-            
-            .hero-content p.quote { 
-                font-size: 14px; 
-                letter-spacing: 3px; 
-                margin-bottom: 25px; /* 與花束下方的計時器拉開距離 */
+
+            .hero-date-container {
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 104px; 
             }
-            
-            /* ★ 手機版：隱藏 PC 版底部計時器，顯示花束下方的移動版計時器 */
-            .hero-countdown-wrapper { display: none; }
-            .hero-countdown-mobile {
-                display: block;
-                position: relative;
+
+            .hero-quote-pc {
+                display: none; 
+            }
+            /* 第一屏手機版標語：維持白色、15px、font-weight: 700，以及兩行斷行邏輯 */
+            .hero-quote-mobile {
+                position: absolute;
+                bottom: 5vh;
+                right: 6vw;
                 z-index: 2;
-                width: 100%;
-                margin-top: 10px;
+                font-family: 'Noto Serif TC', serif;
+                font-size: 15px; 
+                font-weight: 700;  
+                color: #ffffff;
+                text-align: left; 
+                line-height: 1.6;
+                display: block; 
             }
-            
-            .hero-countdown-mobile .hero-countdown-timer .num { font-size: 1.45rem; }
-            .hero-countdown-timer .unit { font-size: 0.7rem; }
-            .hero-countdown-timer .divider { margin: 0 5px; font-size: 1.2rem; }
+
+            .countdown-section {
+                padding: 40px 15px;
+            }
+            .couple-name-container {
+                width: 320px;
+            }
+            .countdown-card-wrapper {
+                max-width: 100%;
+            }
+            .countdown-static-text {
+                top: 13%;
+                left: 15%; 
+                font-size: 0.85rem;
+            }
+            .countdown-timer-box {
+                top: 25%;
+                left: 15%; 
+                gap: 5vw;
+            }
+            .countdown-item {
+                min-width: 42px; 
+            }
+            .countdown-num {
+                font-size: 3.2rem;
+                font-variant-numeric: tabular-nums; 
+            }
+            .countdown-label {
+                font-size: 0.75rem;
+            }
             
             .section-container { padding: 80px 15px 20px 15px; }
             .section-container-rsvp { padding: 20px 15px 80px 15px; }
@@ -617,29 +612,57 @@
 </head>
 <body>
 
-    <nav>
-        <a href="#about" class="nav-logo">C & L</a>
-        <ul>
-            <li><a href="#about">關於我們 <span class="en">ABOUT</span></a></li>
-            <li><a href="#details">婚禮詳情 <span class="en">DETAILS</span></a></li>
-            <li><a href="#rsvp">出席回函 <span class="en">RSVP</span></a></li>
-        </ul>
-        <div class="nav-mobile-date">02.21.2027</div>
-    </nav>
-
+    <!-- 第一屏封面 -->
     <header class="hero" id="about">
-        <div class="hero-content">
-            <p class="date">02.21.2027</p>
-            <h1>Charlie & Livia</h1>
-            <p class="quote">誠摯邀請您 一同見證我們的下一頁</p>
-            
-            <!-- ★ 手機版專屬倒數計時器（位於花束下方空白處） -->
-            <div class="hero-countdown-mobile" id="countdown-mobile"></div>
-        </div>
+        <div class="hero-top-title">Charlie & Livia</div>
         
-        <!-- PC 版倒數計時器（固定在畫面底部） -->
-        <div class="hero-countdown-wrapper" id="countdown"></div>
+        <div class="hero-date-container">
+            <img src="https://github.com/user-attachments/assets/e4f20ead-0592-4396-bf8c-aabefa8012d7" alt="02.21.2027" class="hero-date-img">
+        </div>
+
+        <div class="hero-quote-pc">
+            原來有些相遇，比我們以為的更早
+        </div>
+
+        <div class="hero-quote-mobile">
+            原來有些相遇，<br>比我們以為的更早
+        </div>
     </header>
+
+    <!-- 第二屏：復古雜誌倒數計時卡片 -->
+    <section class="countdown-section">
+        <div class="couple-name-container">
+            <img src="https://github.com/user-attachments/assets/457950da-8793-445a-97e8-773dbd364b78" alt="黃彥齊 詹婷伃" class="couple-name-img">
+        </div>
+
+        <div class="countdown-card-wrapper">
+            <!-- 採用 <img> 滿版呈現底圖 -->
+            <img src="https://github.com/user-attachments/assets/9a938a18-c5e7-48d9-a251-a5dd4428e0b8" alt="Card Background" class="countdown-card-img" id="cardBgImg">
+
+            <div class="countdown-static-text">
+                我們想把一些珍貴片段重新翻開<br>距離這一天，還有
+            </div>
+
+            <div class="countdown-timer-box" id="countdownTimer">
+                <div class="countdown-item">
+                    <div class="countdown-num" id="daysNum">--</div>
+                    <div class="countdown-label">DAYS</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-num" id="hoursNum">--</div>
+                    <div class="countdown-label">HRS</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-num" id="minsNum">--</div>
+                    <div class="countdown-label">MIN</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-num" id="secsNum">--</div>
+                    <div class="countdown-label">SEC</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- 婚禮詳情區塊 -->
     <section id="details" class="section-container">
@@ -691,7 +714,6 @@
             </div>
 
             <div class="rsvp-card">
-                <!-- ★ 改為 JavaScript 非同步提交，完美串接 Google 表單 -->
                 <form id="rsvpForm">
                     
                     <div class="form-group">
@@ -796,7 +818,6 @@
             }
         });
 
-        // ★ Google 表單非同步送出邏輯 (完美繞過 CORS 限制)
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
@@ -809,7 +830,7 @@
             fetch(actionUrl, {
                 method: 'POST',
                 body: formData,
-                mode: 'no-cors' // 關鍵：略過跨域檢查
+                mode: 'no-cors'
             }).then(() => {
                 alert('感謝您的回覆，我們已收到您的祝福。期待與您分享這份喜悅！');
                 window.location.reload();
@@ -834,6 +855,19 @@
             }
         }
 
+        // RWD 動態切換卡片底圖
+        function updateCardImage() {
+            const cardImg = document.getElementById('cardBgImg');
+            if (window.innerWidth <= 768) {
+                cardImg.src = 'https://github.com/user-attachments/assets/4083a37b-214c-4c02-8009-ef19244397a3'; // 手機版底圖
+            } else {
+                cardImg.src = 'https://github.com/user-attachments/assets/9a938a18-c5e7-48d9-a251-a5dd4428e0b8'; // PC版底圖
+            }
+        }
+        window.addEventListener('resize', updateCardImage);
+        window.addEventListener('DOMContentLoaded', updateCardImage);
+
+        // 倒數計時邏輯
         const weddingDate = new Date("2027-02-21T12:00:00").getTime();
         
         function updateCountdown() {
@@ -841,9 +875,10 @@
             const distance = weddingDate - now;
 
             if (distance < 0) {
-                const expiredHtml = "<div class='hero-countdown-timer'><span class='num'>Just Married!</span></div>";
-                document.getElementById("countdown").innerHTML = expiredHtml;
-                document.getElementById("countdown-mobile").innerHTML = expiredHtml;
+                document.getElementById("daysNum").innerText = "0";
+                document.getElementById("hoursNum").innerText = "0";
+                document.getElementById("minsNum").innerText = "0";
+                document.getElementById("secsNum").innerText = "0";
                 return;
             }
 
@@ -854,20 +889,10 @@
 
             const format = (num) => num.toString().padStart(2, '0');
 
-            const countdownHtml = `
-                <div class="hero-countdown-timer">
-                    <span class="num">${days}</span> <span class="unit">Days</span>
-                    <span class="divider">|</span>
-                    <span class="num">${format(hours)}</span> <span class="unit">Hrs</span>
-                    <span class="divider">|</span>
-                    <span class="num">${format(minutes)}</span> <span class="unit">Min</span>
-                    <span class="divider">|</span>
-                    <span class="num">${format(seconds)}</span> <span class="unit">Sec</span>
-                </div>
-            `;
-
-            document.getElementById("countdown").innerHTML = countdownHtml;
-            document.getElementById("countdown-mobile").innerHTML = countdownHtml;
+            document.getElementById("daysNum").innerText = days;
+            document.getElementById("hoursNum").innerText = format(hours);
+            document.getElementById("minsNum").innerText = format(minutes);
+            document.getElementById("secsNum").innerText = format(seconds);
         }
         
         setInterval(updateCountdown, 1000); 
