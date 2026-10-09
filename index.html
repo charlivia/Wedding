@@ -572,16 +572,18 @@
                 width: 100%;
                 margin: 0 auto;
             }
-            /* ★ 手機版第二屏：文案與倒數組件整組往左移動 15px (left 從 15% 調為 13%) */
             .countdown-static-text {
                 top: 13%;
                 left: 13%; 
                 font-size: 15px; 
             }
+            /* ★ 手機版第二屏倒數組件：整組等比例縮小 10% (transform-origin 設為左上角以對齊定位) */
             .countdown-timer-box {
                 top: 25%;
                 left: 13%; 
                 gap: 5vw;
+                transform: scale(0.9);
+                transform-origin: top left;
             }
             .countdown-item {
                 min-width: 42px; 
