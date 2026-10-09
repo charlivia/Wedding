@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charlie & Livia Wedding</title>
-    <!-- 引入 Forum, Noto Serif TC, Cormorant Garamond 字體 -->
-    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- 引入 Antic Didone, Forum, Noto Serif TC, Cormorant Garamond 字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Forum&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Serif+TC:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -104,10 +104,10 @@
         }
 
         /* ========================================= */
-        /* 2. 第二屏：復古雜誌倒數計時卡片區塊 (PC版完美定位) */
+        /* 2. 第二屏：復古雜誌倒數計時卡片區塊 */
         /* ========================================= */
         .countdown-section {
-            padding: 90px 20px;
+            padding: 90px 20px 40px 20px;
             background-color: var(--bg);
             display: flex;
             flex-direction: column;
@@ -174,6 +174,122 @@
         }
 
         /* ========================================= */
+        /* 3. 第三屏：Wedding Day 流程與飯店指引區塊 */
+        /* ========================================= */
+        .wedding-day-section {
+            padding: 40px 20px 80px 20px;
+            background-color: var(--bg);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Wedding Day 標準字（在上） */
+        .wday-header-img {
+            width: 504px;
+            max-width: 90%;
+            height: auto;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        /* 日期圖（在下） */
+        .wday-date-img {
+            width: 312px;
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        /* 飯店資訊區塊 */
+        .hotel-info-block {
+            margin-bottom: 45px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hotel-icon {
+            width: 110px;
+            height: auto;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .hotel-name-tw {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: 2px;
+            margin-bottom: 2px;
+        }
+
+        /* 飯店英文名稱改用 Antic Didone 字體 */
+        .hotel-name-en {
+            font-family: 'Antic Didone', serif;
+            font-size: 1.05rem;
+            color: var(--text-light);
+            letter-spacing: 1.5px;
+        }
+
+        /* PC版：三欄流程排版 */
+        .wedding-timeline-pc {
+            display: flex;
+            justify-content: center;
+            gap: 22px; 
+            max-width: 850px;
+            width: 100%;
+        }
+
+        .timeline-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .timeline-icon {
+            width: 90px;
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* 時間標題（如 11:00）改用 Antic Didone 字體 */
+        .timeline-time-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: 2px;
+            margin-bottom: 2px;
+        }
+        .timeline-time-title .time-didone {
+            font-family: 'Antic Didone', serif;
+            font-size: 1.25rem;
+        }
+
+        .timeline-location {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            letter-spacing: 1px;
+        }
+        .timeline-location .en-didone {
+            font-family: 'Antic Didone', serif;
+            font-size: 1.1rem;
+        }
+
+        /* 手機版隱藏，PC版顯示 */
+        .wedding-timeline-mobile {
+            display: none;
+        }
+
+        /* ========================================= */
         /* 共用與其他區塊 */
         /* ========================================= */
         .section-container {
@@ -190,9 +306,7 @@
             text-align: center;
         }
 
-        /* ========================================= */
-        /* 3. 婚禮詳情 (卡片式設計) */
-        /* ========================================= */
+        /* 4. 婚禮詳情 (卡片式設計) */
         .title-group {
             margin-bottom: 50px;
             text-align: center;
@@ -351,9 +465,7 @@
             filter: grayscale(15%); 
         }
 
-        /* ========================================= */
-        /* 4. 出席回函 (卡片式設計) */
-        /* ========================================= */
+        /* 5. 出席回函 (RSVP) 區塊 */
         .rsvp-card {
             background-color: #ffffff;
             border-radius: 24px;
@@ -551,7 +663,7 @@
             }
 
             .countdown-section {
-                padding: 40px 15px;
+                padding: 40px 15px 25px 15px;
             }
             .countdown-card-wrapper {
                 max-width: 100%;
@@ -579,6 +691,73 @@
             }
             .countdown-label {
                 font-size: 0.75rem;
+            }
+
+            /* 第三屏手機版 */
+            .wedding-day-section {
+                padding: 35px 20px 50px 20px;
+            }
+            .wday-header-img {
+                width: 340px; 
+                margin-bottom: 12px;
+            }
+            .wday-date-img {
+                width: 220px; 
+                margin-bottom: 35px;
+            }
+            .hotel-info-block {
+                margin-bottom: 35px;
+            }
+            .hotel-icon {
+                width: 90px;
+                margin-bottom: 12px;
+            }
+
+            .wedding-timeline-pc {
+                display: none; 
+            }
+
+            .wedding-timeline-mobile {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 36px;
+                width: 100%;
+            }
+
+            .mobile-timeline-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .mobile-timeline-icon {
+                width: 76px;
+                height: auto;
+                margin-bottom: 12px;
+                display: block;
+            }
+            .mobile-timeline-time {
+                font-family: 'Noto Serif TC', serif;
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: var(--text-dark);
+                letter-spacing: 2px;
+                margin-bottom: 2px;
+            }
+            .mobile-timeline-time .time-didone {
+                font-family: 'Antic Didone', serif;
+                font-size: 1.25rem;
+            }
+            .mobile-timeline-loc {
+                font-family: 'Noto Serif TC', serif;
+                font-size: 0.9rem;
+                color: var(--text-light);
+                letter-spacing: 1px;
+            }
+            .mobile-timeline-loc .en-didone {
+                font-family: 'Antic Didone', serif;
+                font-size: 1.1rem;
             }
             
             .section-container { padding: 80px 15px 20px 15px; }
@@ -646,6 +825,60 @@
                     <div class="countdown-num" id="secsNum">--</div>
                     <div class="countdown-label">SEC</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第三屏：Wedding Day 流程與飯店指引區塊 -->
+    <section class="wedding-day-section">
+        <!-- 1. Wedding Day 標準字（在上） -->
+        <img src="https://github.com/user-attachments/assets/4e16c00d-a7ae-410c-8732-628df01d146f" alt="Wedding Day" class="wday-header-img">
+        
+        <!-- 2. 日期圖（在下） -->
+        <img src="https://github.com/user-attachments/assets/80e5ef7e-2efc-42d6-896d-df1bbfcf3a34" alt="2027.02.21 (日)" class="wday-date-img">
+
+        <!-- 3. 台北士林萬麗酒店（英文改用 Antic Didone 字體） -->
+        <div class="hotel-info-block">
+            <img src="https://github.com/user-attachments/assets/6c6714c2-bb35-43ea-9d9d-8a838e96ed9d" alt="Hotel Icon" class="hotel-icon">
+            <div class="hotel-name-tw">台北士林萬麗酒店</div>
+            <div class="hotel-name-en">Renaissance Taipei Shihlin Hotel</div>
+        </div>
+
+        <!-- PC版：三欄橫式流程排版（時間與地點改用 Antic Didone 字體，並加入空格） -->
+        <div class="wedding-timeline-pc">
+            <div class="timeline-item">
+                <img src="https://github.com/user-attachments/assets/31bf6ce8-4e0a-4857-a96e-bf87216f5230" alt="證婚" class="timeline-icon">
+                <div class="timeline-time-title"><span class="time-didone">11:00</span> 證婚</div>
+                <div class="timeline-location"><span class="en-didone">RF</span> 空中花園</div>
+            </div>
+            <div class="timeline-item">
+                <img src="https://github.com/user-attachments/assets/71c9b831-b08b-44b8-bf84-aade9e11f438" alt="餐前酒會" class="timeline-icon">
+                <div class="timeline-time-title"><span class="time-didone">11:40</span> 餐前酒會</div>
+                <div class="timeline-location"><span class="en-didone">2F</span> 宴會廳</div>
+            </div>
+            <div class="timeline-item">
+                <img src="https://github.com/user-attachments/assets/1dd1a3bb-ba7d-4685-8809-8e7c7eec1388" alt="準時開席" class="timeline-icon">
+                <div class="timeline-time-title"><span class="time-didone">12:30</span> 準時開席</div>
+                <div class="timeline-location"><span class="en-didone">2F</span> 宴會廳</div>
+            </div>
+        </div>
+
+        <!-- 手機版：直式上下單欄流程排版 -->
+        <div class="wedding-timeline-mobile">
+            <div class="mobile-timeline-item">
+                <img src="https://github.com/user-attachments/assets/31bf6ce8-4e0a-4857-a96e-bf87216f5230" alt="證婚" class="mobile-timeline-icon">
+                <div class="mobile-timeline-time"><span class="time-didone">11:00</span> 證婚</div>
+                <div class="mobile-timeline-loc"><span class="en-didone">RF</span> 空中花園</div>
+            </div>
+            <div class="mobile-timeline-item">
+                <img src="https://github.com/user-attachments/assets/71c9b831-b08b-44b8-bf84-aade9e11f438" alt="餐前酒會" class="mobile-timeline-icon">
+                <div class="mobile-timeline-time"><span class="time-didone">11:40</span> 餐前酒會</div>
+                <div class="mobile-timeline-loc"><span class="en-didone">2F</span> 宴會廳</div>
+            </div>
+            <div class="mobile-timeline-item">
+                <img src="https://github.com/user-attachments/assets/1dd1a3bb-ba7d-4685-8809-8e7c7eec1388" alt="準時開席" class="mobile-timeline-icon">
+                <div class="mobile-timeline-time"><span class="time-didone">12:30</span> 準時開席</div>
+                <div class="mobile-timeline-loc"><span class="en-didone">2F</span> 宴會廳</div>
             </div>
         </div>
     </section>
@@ -845,9 +1078,9 @@
         function updateCardImage() {
             const cardImg = document.getElementById('cardBgImg');
             if (window.innerWidth <= 768) {
-                cardImg.src = 'https://github.com/user-attachments/assets/793f7025-9789-4826-9b2a-1969a8dccfdd'; // 手機版新底圖
+                cardImg.src = 'https://github.com/user-attachments/assets/793f7025-9789-4826-9b2a-1969a8dccfdd'; // 手機版底圖
             } else {
-                cardImg.src = 'https://github.com/user-attachments/assets/08c35491-9c88-4c70-9442-ca1abc496aa1'; // PC版新底圖
+                cardImg.src = 'https://github.com/user-attachments/assets/08c35491-9c88-4c70-9442-ca1abc496aa1'; // PC版底圖
             }
         }
         window.addEventListener('resize', updateCardImage);
