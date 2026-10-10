@@ -14,7 +14,7 @@
             --bg: #fcfbf9;        
             --text-dark: #333333; 
             --text-light: #7a7a7a;
-            --border-color: #e5e5e5;
+            --border-color: #d6d6d6;
             --countdown-red: #770000; /* 指定的倒數數字色號 */
         }
 
@@ -174,309 +174,174 @@
         }
 
         /* ========================================= */
-        /* 3. 第三屏：Wedding Day 流程與飯店指引區塊 */
+        /* 3. 第三屏：Wedding Day 全新美感排版 */
         /* ========================================= */
         .wedding-day-section {
-            padding: 40px 20px 80px 20px;
+            padding: 60px 20px 80px 20px;
             background-color: var(--bg);
-            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* Wedding Day 標準字（在上） */
-        .wday-header-img {
-            width: 504px;
-            max-width: 90%;
-            height: auto;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        /* 日期圖（在下） */
-        .wday-date-img {
-            width: 312px;
-            max-width: 80%;
-            height: auto;
-            margin-bottom: 40px;
-            display: block;
-        }
-
-        /* 飯店資訊區塊 */
-        .hotel-info-block {
-            margin-bottom: 45px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .hotel-icon {
-            width: 110px;
-            height: auto;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .hotel-name-tw {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            letter-spacing: 2px;
-            margin-bottom: 2px;
-        }
-
-        /* 飯店英文名稱改用 Antic Didone 字體 */
-        .hotel-name-en {
-            font-family: 'Antic Didone', serif;
-            font-size: 1.05rem;
-            color: var(--text-light);
-            letter-spacing: 1.5px;
-        }
-
-        /* PC版：三欄流程排版 */
         .wedding-timeline-pc {
             display: flex;
-            justify-content: center;
-            gap: 22px; 
-            max-width: 850px;
+            justify-content: space-between;
+            align-items: flex-start;
             width: 100%;
+            max-width: 920px; 
+            margin: 0 auto;
         }
 
-        .timeline-item {
-            flex: 1;
+        .pc-left-column {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            align-items: flex-start;
+            text-align: left;
         }
 
-        .timeline-icon {
-            width: 90px;
+        /* Wedding Day 圖片齊左 */
+        .pc-wday-header {
+            width: 420px;
             height: auto;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             display: block;
+            margin-left: -18px; 
         }
 
-        /* 時間標題（如 11:00）改用 Antic Didone 字體 */
-        .timeline-time-title {
+        /* 日期圖片精準對齊 */
+        .pc-wday-date-img {
+            width: 270px;
+            height: auto;
+            margin-bottom: 6px;
+            display: block;
+            margin-left: -27px; 
+        }
+
+        /* 台北士林萬麗酒店文字 */
+        .pc-hotel-text {
             font-family: 'Noto Serif TC', serif;
             font-size: 1.15rem;
             font-weight: 700;
             color: var(--text-dark);
             letter-spacing: 2px;
-            margin-bottom: 2px;
-        }
-        .timeline-time-title .time-didone {
-            font-family: 'Antic Didone', serif;
-            font-size: 1.25rem;
+            margin-bottom: 40px; 
+            margin-left: 0;
         }
 
-        .timeline-location {
+        /* 下方三欄時程橫向排列 */
+        .pc-timeline-row {
+            display: flex;
+            gap: 50px;
+            justify-content: flex-start;
+        }
+
+        .pc-time-item {
+            text-align: left;
+        }
+
+        /* PC版時間圖片縮小 20% (76px) */
+        .pc-time-img {
+            width: 76px;
+            height: auto;
+            margin-top: 0px;
+            margin-bottom: 12px; 
+            display: block;
+        }
+
+        /* 主標 */
+        .pc-time-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: 2px;
+            margin-bottom: 0px; 
+        }
+
+        /* 副標往上移 2px */
+        .pc-time-loc {
             font-family: 'Noto Serif TC', serif;
             font-size: 0.95rem;
             color: var(--text-light);
             letter-spacing: 1px;
+            margin-top: -2px; 
         }
-        .timeline-location .en-didone {
+        .pc-time-loc .en-didone {
             font-family: 'Antic Didone', serif;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
-        /* 手機版隱藏，PC版顯示 */
+        /* 右側插圖放大 15% 且上移 8px */
+        .pc-right-banquet {
+            width: 500px;
+            height: auto;
+            display: block;
+            flex-shrink: 0;
+            margin-top: 17px; 
+        }
+
+        /* 手機版：直式上下單欄排列 */
         .wedding-timeline-mobile {
             display: none;
         }
 
         /* ========================================= */
-        /* 共用與其他區塊 */
+        /* 4. 全新沉浸式 RSVP 區塊 (底色 #0e1017) */
         /* ========================================= */
-        .section-container {
-            padding: 60px 20px 40px 20px; 
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .section-container-rsvp {
-            padding: 30px 20px 100px 20px; 
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        /* 4. 婚禮詳情 (卡片式設計) */
-        .title-group {
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        .section-title-tw-new {
-            font-family: 'Noto Serif TC', serif;
-            font-weight: 700;
-            font-size: 14.5px; 
-            color: var(--primary); 
-            letter-spacing: 4px;
-            margin-bottom: 8px; 
-        }
-
-        .section-title-en-new {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            font-size: 14.5px; 
-            color: var(--primary);
-            letter-spacing: 6px; 
-            text-transform: uppercase;
-        }
-
-        .detail-card {
-            background-color: #ffffff;
-            border-radius: 0; 
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
-            padding: 40px;
+        .rsvp-section-immersive {
             position: relative;
-            text-align: left;
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-
-        .detail-card::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0; 
-            bottom: 0; 
-            width: 5px;
-            background-color: var(--primary);
-        }
-
-        .card-header {
-            margin-bottom: 25px;
+            background-color: #0e1017;
+            background-repeat: no-repeat;
+            background-position: center bottom;
+            background-size: 100% auto;
+            padding: 80px 20px 140px 20px;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .card-title-group h3 {
+        .rsvp-header-box {
+            text-align: center;
+            margin-bottom: 35px;
+            z-index: 2;
+        }
+
+        /* RSVP 標準字放大 20% (原 132px * 1.2 = 約 158px) */
+        .rsvp-title-logo {
+            width: 158px;
+            max-width: 70%;
+            height: auto;
+            display: block;
+            margin: 0 auto 8px auto;
+            filter: brightness(0) invert(1); /* 轉成純白 */
+        }
+
+        /* 「希望這天也有你」字級與粗細與第一屏標語完全一致 (15px, 700) */
+        .rsvp-subtext {
             font-family: 'Noto Serif TC', serif;
-            font-size: 1.4rem;
-            color: var(--text-dark);
-            margin-bottom: 5px;
-            letter-spacing: 2px;
-        }
-
-        .card-title-group p.sub {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 0.9rem;
-            color: var(--text-light);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 15px; 
-        }
-
-        .card-date-line {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            font-size: 1.15rem;
-            color: var(--primary);
-            letter-spacing: 1px;
-        }
-        .card-date-line span {
-            font-family: 'Noto Serif TC', serif;
-            font-size: 1.05rem; 
-        }
-
-        .card-body p {
-            margin-bottom: 15px;
-            color: var(--text-dark);
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-        }
-
-        .card-body strong {
+            font-size: 15px;
             font-weight: 700;
-        }
-
-        .transport-toggle {
-            display: inline-block;
-            margin-top: 10px;
-            font-size: 0.85rem;
-            color: var(--secondary);
-            cursor: pointer;
-            border-bottom: 1px solid #eaeaea;
-            padding-bottom: 5px;
+            color: #ffffff;
             letter-spacing: 2px;
-            transition: color 0.3s;
         }
 
-        .transport-toggle:hover {
-            color: var(--primary);
-        }
-
-        .transport-toggle .en {
-            font-family: 'Cormorant Garamond', serif;
-            letter-spacing: 3px;
-        }
-
-        .transport-toggle .arrow {
-            font-size: 0.7rem;
-            margin-left: 5px;
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-
-        .transport-toggle.active .arrow {
-            transform: rotate(180deg);
-        }
-
-        .transport-content {
-            display: none; 
-            margin-top: 25px;
-            padding: 25px 20px; 
-            background-color: #f8f9f9; 
-            border-radius: 12px; 
-            animation: fadeIn 0.4s;
-        }
-
-        .transport-content p {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 10px;
-        }
-
-        .map-container {
-            position: relative;
-            padding-bottom: 56.25%; 
-            height: 0;
-            overflow: hidden;
-            margin-top: 20px;
-            border-radius: 8px; 
-        }
-
-        .map-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* 半透明霧面玻璃擬態卡片 */
+        .rsvp-card-glass {
+            background: rgba(245, 245, 247, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 28px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+            padding: 50px 45px;
             width: 100%;
-            height: 100%;
-            border: 0;
-            filter: grayscale(15%); 
-        }
-
-        /* 5. 出席回函 (RSVP) 區塊 */
-        .rsvp-card {
-            background-color: #ffffff;
-            border-radius: 24px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.06);
-            padding: 60px 50px;
+            max-width: 650px;
             text-align: left;
-            margin-bottom: 40px;
+            z-index: 2;
         }
 
         .form-group {
-            margin-bottom: 45px; 
+            margin-bottom: 35px; 
         }
 
         .form-group label {
@@ -522,7 +387,7 @@
 
         input::placeholder,
         textarea::placeholder {
-            color: #b5b5b5; 
+            color: #999999; 
             font-size: 0.85rem; 
         }
         
@@ -548,7 +413,7 @@
         .checkbox-group {
             display: flex;
             flex-direction: column;
-            gap: 6px; 
+            gap: 8px; 
             margin-top: 10px;
         }
 
@@ -576,7 +441,7 @@
 
         .submit-btn-container {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 45px;
         }
 
         .submit-btn {
@@ -624,7 +489,7 @@
         }
 
         /* ========================================= */
-        /* 手機版專屬優化 (RWD) */
+        /* 手機版專屬優化 (預留 460px 底部空間給底圖) */
         /* ========================================= */
         @media (max-width: 768px) {
             .hero {
@@ -693,88 +558,159 @@
                 font-size: 0.75rem;
             }
 
-            /* 第三屏手機版 */
             .wedding-day-section {
-                padding: 35px 20px 50px 20px;
+                padding: 40px 20px 60px 20px;
             }
-            .wday-header-img {
-                width: 340px; 
-                margin-bottom: 12px;
-            }
-            .wday-date-img {
-                width: 220px; 
-                margin-bottom: 35px;
-            }
-            .hotel-info-block {
-                margin-bottom: 35px;
-            }
-            .hotel-icon {
-                width: 90px;
-                margin-bottom: 12px;
-            }
-
             .wedding-timeline-pc {
                 display: none; 
             }
-
             .wedding-timeline-mobile {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 36px;
+                text-align: center;
                 width: 100%;
             }
-
-            .mobile-timeline-item {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .mobile-timeline-icon {
-                width: 76px;
+            .mob-wday-header {
+                width: 340px;
                 height: auto;
-                margin-bottom: 12px;
+                margin-bottom: 15px;
                 display: block;
             }
-            .mobile-timeline-time {
+            .mob-wday-date-img {
+                width: 250px;
+                height: auto;
+                margin-bottom: 6px;
+                display: block;
+            }
+            .mob-hotel-text {
+                font-family: 'Noto Serif TC', serif;
+                font-size: 1.15rem;
+                font-weight: 700;
+                color: var(--text-dark);
+                letter-spacing: 2px;
+                margin-bottom: 6px; 
+            }
+
+            .mob-transport-toggle {
+                display: inline-block;
+                margin-top: -3px; 
+                margin-bottom: 30px;
+                font-size: 0.85rem;
+                color: var(--text-light); 
+                cursor: pointer;
+                border-bottom: 1px solid #eaeaea;
+                padding-bottom: 5px;
+                letter-spacing: 2px;
+                transition: color 0.3s;
+            }
+            .mob-transport-toggle .en {
+                font-family: 'Antic Didone', serif; 
+                font-size: 0.84rem; 
+                letter-spacing: 2px;
+            }
+            .mob-transport-toggle .arrow {
+                font-size: 0.7rem;
+                margin-left: 5px;
+                display: inline-block;
+                transition: transform 0.3s ease;
+            }
+            .mob-transport-toggle.active .arrow {
+                transform: rotate(180deg);
+            }
+
+            .mob-transport-content {
+                display: none; 
+                margin-top: 15px;
+                margin-bottom: 30px;
+                padding: 25px 20px; 
+                background-color: #f8f9f9; 
+                border-radius: 12px; 
+                text-align: left;
+                animation: fadeIn 0.4s;
+                width: 100%;
+                max-width: 360px;
+            }
+            .mob-transport-content p {
+                font-size: 0.9rem;
+                color: var(--text-light);
+                margin-bottom: 10px;
+            }
+
+            .mob-time-item {
+                margin-bottom: 35px;
+            }
+            .mob-time-img {
+                width: 78px;
+                height: auto;
+                margin-top: 10px;
+                margin-bottom: 12px; 
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .mob-time-title {
                 font-family: 'Noto Serif TC', serif;
                 font-size: 1.1rem;
                 font-weight: 700;
                 color: var(--text-dark);
                 letter-spacing: 2px;
-                margin-bottom: 2px;
+                margin-bottom: 0px;
             }
-            .mobile-timeline-time .time-didone {
-                font-family: 'Antic Didone', serif;
-                font-size: 1.25rem;
-            }
-            .mobile-timeline-loc {
+            .mob-time-loc {
                 font-family: 'Noto Serif TC', serif;
                 font-size: 0.9rem;
                 color: var(--text-light);
                 letter-spacing: 1px;
+                margin-top: -2px;
             }
-            .mobile-timeline-loc .en-didone {
+            .mob-time-loc .en-didone {
                 font-family: 'Antic Didone', serif;
-                font-size: 1.1rem;
+                font-size: 1rem;
+            }
+            .mob-banquet-img {
+                width: 320px;
+                height: auto;
+                margin-top: -25px;
+                display: block;
+                margin-left: auto;
+                margin-right: 0;
             }
             
-            .section-container { padding: 80px 15px 20px 15px; }
-            .section-container-rsvp { padding: 20px 15px 80px 15px; }
-
-            .detail-card {
-                padding: 30px 20px;
+            /* 手機版 RSVP 區塊：底部預留 460px 確保人物與煙火完整露出 */
+            .rsvp-section-immersive {
+                background-image: url('https://github.com/user-attachments/assets/83c4db7d-f172-45ac-9a79-861da9961f92');
+                background-size: 100% auto;
+                background-position: center bottom;
+                padding: 50px 15px 460px 15px;
             }
 
-            .rsvp-card {
-                padding: 40px 25px;
-                border-radius: 16px;
+            .rsvp-card-glass {
+                padding: 35px 25px;
+                border-radius: 20px;
             }
 
             .form-row {
                 flex-direction: column;
                 gap: 0;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .rsvp-section-immersive {
+                background-image: url('https://github.com/user-attachments/assets/ad941d4f-0120-4232-9a0b-89ddff6c0b94');
+                background-size: 100% auto;
+                background-position: center bottom;
+                padding: 100px 20px 200px 20px;
+            }
+
+            .rsvp-title-logo {
+                width: 260px;
+            }
+
+            .rsvp-subtext {
+                font-size: 15px;
+                font-weight: 700;
             }
         }
     </style>
@@ -829,193 +765,173 @@
         </div>
     </section>
 
-    <!-- 第三屏：Wedding Day 流程與飯店指引區塊 -->
+    <!-- 第三屏：Wedding Day 全新美感排版 -->
     <section class="wedding-day-section">
-        <!-- 1. Wedding Day 標準字（在上） -->
-        <img src="https://github.com/user-attachments/assets/4e16c00d-a7ae-410c-8732-628df01d146f" alt="Wedding Day" class="wday-header-img">
         
-        <!-- 2. 日期圖（在下） -->
-        <img src="https://github.com/user-attachments/assets/80e5ef7e-2efc-42d6-896d-df1bbfcf3a34" alt="2027.02.21 (日)" class="wday-date-img">
-
-        <!-- 3. 台北士林萬麗酒店（英文改用 Antic Didone 字體） -->
-        <div class="hotel-info-block">
-            <img src="https://github.com/user-attachments/assets/6c6714c2-bb35-43ea-9d9d-8a838e96ed9d" alt="Hotel Icon" class="hotel-icon">
-            <div class="hotel-name-tw">台北士林萬麗酒店</div>
-            <div class="hotel-name-en">Renaissance Taipei Shihlin Hotel</div>
-        </div>
-
-        <!-- PC版：三欄橫式流程排版（時間與地點改用 Antic Didone 字體，並加入空格） -->
+        <!-- PC版橫式排版 -->
         <div class="wedding-timeline-pc">
-            <div class="timeline-item">
-                <img src="https://github.com/user-attachments/assets/31bf6ce8-4e0a-4857-a96e-bf87216f5230" alt="證婚" class="timeline-icon">
-                <div class="timeline-time-title"><span class="time-didone">11:00</span> 證婚</div>
-                <div class="timeline-location"><span class="en-didone">RF</span> 空中花園</div>
-            </div>
-            <div class="timeline-item">
-                <img src="https://github.com/user-attachments/assets/71c9b831-b08b-44b8-bf84-aade9e11f438" alt="餐前酒會" class="timeline-icon">
-                <div class="timeline-time-title"><span class="time-didone">11:40</span> 餐前酒會</div>
-                <div class="timeline-location"><span class="en-didone">2F</span> 宴會廳</div>
-            </div>
-            <div class="timeline-item">
-                <img src="https://github.com/user-attachments/assets/1dd1a3bb-ba7d-4685-8809-8e7c7eec1388" alt="準時開席" class="timeline-icon">
-                <div class="timeline-time-title"><span class="time-didone">12:30</span> 準時開席</div>
-                <div class="timeline-location"><span class="en-didone">2F</span> 宴會廳</div>
-            </div>
-        </div>
+            <div class="pc-left-column">
+                <img src="https://github.com/user-attachments/assets/4e16c00d-a7ae-410c-8732-628df01d146f" alt="Wedding Day" class="pc-wday-header">
+                <img src="https://github.com/user-attachments/assets/17534b1c-19bb-4294-b763-4ec195ae06ba" alt="2027.02.21 (日) 午宴" class="pc-wday-date-img">
+                <div class="pc-hotel-text">台北士林萬麗酒店</div>
 
-        <!-- 手機版：直式上下單欄流程排版 -->
-        <div class="wedding-timeline-mobile">
-            <div class="mobile-timeline-item">
-                <img src="https://github.com/user-attachments/assets/31bf6ce8-4e0a-4857-a96e-bf87216f5230" alt="證婚" class="mobile-timeline-icon">
-                <div class="mobile-timeline-time"><span class="time-didone">11:00</span> 證婚</div>
-                <div class="mobile-timeline-loc"><span class="en-didone">RF</span> 空中花園</div>
-            </div>
-            <div class="mobile-timeline-item">
-                <img src="https://github.com/user-attachments/assets/71c9b831-b08b-44b8-bf84-aade9e11f438" alt="餐前酒會" class="mobile-timeline-icon">
-                <div class="mobile-timeline-time"><span class="time-didone">11:40</span> 餐前酒會</div>
-                <div class="mobile-timeline-loc"><span class="en-didone">2F</span> 宴會廳</div>
-            </div>
-            <div class="mobile-timeline-item">
-                <img src="https://github.com/user-attachments/assets/1dd1a3bb-ba7d-4685-8809-8e7c7eec1388" alt="準時開席" class="mobile-timeline-icon">
-                <div class="mobile-timeline-time"><span class="time-didone">12:30</span> 準時開席</div>
-                <div class="mobile-timeline-loc"><span class="en-didone">2F</span> 宴會廳</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 婚禮詳情區塊 -->
-    <section id="details" class="section-container">
-        <div style="max-width: 700px; margin: 0 auto;">
-            <div class="title-group">
-                <h2 class="section-title-tw-new">婚禮詳情</h2>
-                <h2 class="section-title-en-new">WEDDING DETAILS</h2>
-            </div>
-            
-            <div class="detail-card">
-                <div class="card-header">
-                    <div class="card-title-group">
-                        <h3>午宴</h3>
-                        <p class="sub">The Wedding Banquet</p>
+                <div class="pc-timeline-row">
+                    <div class="pc-time-item">
+                        <img src="https://github.com/user-attachments/assets/4eed68bd-1aa8-4f55-bae5-c4308f7eae5c" alt="11:00" class="pc-time-img">
+                        <div class="pc-time-title">證婚</div>
+                        <div class="pc-time-loc"><span class="en-didone">RF</span> 空中花園</div>
                     </div>
-                    <div class="card-date-line">
-                        | 02.21.2027 <span>(日)</span>
+                    <div class="pc-time-item">
+                        <img src="https://github.com/user-attachments/assets/cbd23f2b-b157-42ca-b088-5d67b0d4f545" alt="11:40" class="pc-time-img">
+                        <div class="pc-time-title">餐前酒會</div>
+                        <div class="pc-time-loc"><span class="en-didone">2F</span> 宴會廳</div>
+                    </div>
+                    <div class="pc-time-item">
+                        <img src="https://github.com/user-attachments/assets/d8168111-a278-4779-8afa-059329fd7d0e" alt="12:30" class="pc-time-img">
+                        <div class="pc-time-title">準時開席</div>
+                        <div class="pc-time-loc"><span class="en-didone">2F</span> 宴會廳</div>
                     </div>
                 </div>
+            </div>
+
+            <div>
+                <img src="https://github.com/user-attachments/assets/d2c3d58a-0639-40c3-a7c4-f95083bd754d" alt="Banquet Illustration" class="pc-right-banquet">
+            </div>
+        </div>
+
+        <!-- 手機版直式排版 -->
+        <div class="wedding-timeline-mobile">
+            <img src="https://github.com/user-attachments/assets/4e16c00d-a7ae-410c-8732-628df01d146f" alt="Wedding Day" class="mob-wday-header">
+            <img src="https://github.com/user-attachments/assets/17534b1c-19bb-4294-b763-4ec195ae06ba" alt="2027.02.21 (日) 午宴" class="mob-wday-date-img">
+            <div class="mob-hotel-text">台北士林萬麗酒店</div>
+
+            <!-- 手機版第三屏專屬交通指引組件 -->
+            <div class="mob-transport-toggle" onclick="toggleMobTransport()">
+                交通指引 <span class="en">Transportation</span> <span class="arrow">▼</span>
+            </div>
+            
+            <div class="mob-transport-content" id="mobTransportContent">
+                <p><strong>捷運：</strong>紅線「捷運士林站」2號出口，步行約 5 分鐘即可抵達。</p>
+                <p><strong>開車：</strong>飯店設有地下停車場，請於離場時至招待桌領取停車折抵。</p>
                 
-                <div class="card-body">
-                    <p><strong>地點：</strong>台北士林萬麗酒店 Renaissance Taipei Shihlin Hotel</p>
-                    <p><strong>時間：</strong>12:00 入席</p>
-                    
-                    <div class="transport-toggle" onclick="toggleTransport()">
-                        交通指引 <span class="en">TRANSPORTATION</span> <span class="arrow">▼</span>
-                    </div>
-                    
-                    <div class="transport-content" id="transportContent">
-                        <p><strong>捷運：</strong>紅線「捷運士林站」2號出口，步行約 5 分鐘即可抵達。</p>
-                        <p><strong>開車：</strong>飯店設有地下停車場，請於離場時至招待桌領取停車折抵。</p>
-                        
-                        <div class="map-container">
-                            <iframe src="https://maps.google.com/maps?q=台北士林萬麗酒店&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                <div class="map-container">
+                    <iframe src="https://maps.google.com/maps?q=台北士林萬麗酒店&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <div class="mob-time-item">
+                <img src="https://github.com/user-attachments/assets/4eed68bd-1aa8-4f55-bae5-c4308f7eae5c" alt="11:00" class="mob-time-img">
+                <div class="mob-time-title">證婚</div>
+                <div class="mob-time-loc"><span class="en-didone">RF</span> 空中花園</div>
+            </div>
+
+            <div class="mob-time-item">
+                <img src="https://github.com/user-attachments/assets/cbd23f2b-b157-42ca-b088-5d67b0d4f545" alt="11:40" class="mob-time-img">
+                <div class="mob-time-title">餐前酒會</div>
+                <div class="mob-time-loc"><span class="en-didone">2F</span> 宴會廳</div>
+            </div>
+
+            <div class="mob-time-item">
+                <img src="https://github.com/user-attachments/assets/d8168111-a278-4779-8afa-059329fd7d0e" alt="12:30" class="mob-time-img">
+                <div class="mob-time-title">準時開席</div>
+                <div class="mob-time-loc"><span class="en-didone">2F</span> 宴會廳</div>
+            </div>
+
+            <img src="https://github.com/user-attachments/assets/d2c3d58a-0639-40c3-a7c4-f95083bd754d" alt="Banquet Illustration" class="mob-banquet-img">
+        </div>
+
+    </section>
+
+    <!-- 沉浸式 RSVP 出席回函區塊 -->
+    <section id="rsvp" class="rsvp-section-immersive">
+        <div class="rsvp-header-box">
+            <img src="https://github.com/user-attachments/assets/25313ed2-9137-4066-b2aa-78af380c3967" alt="RSVP" class="rsvp-title-logo">
+            <p class="rsvp-subtext">希望這天也有你</p>
+        </div>
+
+        <div class="rsvp-card-glass">
+            <form id="rsvpForm">
+                
+                <div class="form-group">
+                    <label>姓名 <span class="en">NAME</span></label>
+                    <input type="text" name="entry.1801164509" required placeholder="請輸入姓名"> 
+                </div>
+
+                <div class="form-group">
+                    <label>聯絡電話 <span class="en">PHONE</span></label>
+                    <input type="tel" name="entry.1638580247" required placeholder="請輸入聯絡電話"> 
+                </div>
+
+                <div class="form-group">
+                    <label>電子信箱 <span class="en">EMAIL</span></label>
+                    <input type="email" name="entry.499861683" required placeholder="example@gmail.com"> 
+                </div>
+
+                <div class="form-group">
+                    <label>與新人的關係 <span class="en">RELATIONSHIP</span></label>
+                    <select name="entry.1721649734" required>
+                        <option value="" disabled selected>請選擇您的關係</option>
+                        <option value="男方親戚">男方親戚</option>
+                        <option value="男方好友">男方好友</option>
+                        <option value="女方親戚">女方親戚</option>
+                        <option value="女方好友">女方好友</option>
+                        <option value="共同好友">共同好友</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label>參加人數 <span class="en">ATTENDANCE COUNT</span></label>
+                            <input type="number" id="guestCount" name="entry.1302847197" min="0" required placeholder="0">
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- 出席回函 (RSVP) 區塊 -->
-    <section id="rsvp" class="section-container-rsvp">
-        <div style="max-width: 700px; margin: 0 auto;">
-            
-            <div class="title-group">
-                <h2 class="section-title-tw-new">出席回函</h2>
-                <h2 class="section-title-en-new">AWAITING YOUR REPLY</h2>
-            </div>
-
-            <div class="rsvp-card">
-                <form id="rsvpForm">
-                    
+                <div id="conditional-fields">
                     <div class="form-group">
-                        <label>姓名 <span class="en">NAME</span></label>
-                        <input type="text" name="entry.1801164509" required placeholder="請輸入姓名"> 
-                    </div>
-
-                    <div class="form-group">
-                        <label>聯絡電話 <span class="en">PHONE</span></label>
-                        <input type="tel" name="entry.1638580247" required placeholder="請輸入聯絡電話"> 
-                    </div>
-
-                    <div class="form-group">
-                        <label>電子信箱 <span class="en">EMAIL</span></label>
-                        <input type="email" name="entry.499861683" required placeholder="example@gmail.com"> 
-                    </div>
-
-                    <div class="form-group">
-                        <label>與新人的關係 <span class="en">RELATIONSHIP</span></label>
-                        <select name="entry.1721649734" required>
-                            <option value="" disabled selected>請選擇您的關係</option>
-                            <option value="男方親戚">男方親戚</option>
-                            <option value="男方好友">男方好友</option>
-                            <option value="女方親戚">女方親戚</option>
-                            <option value="女方好友">女方好友</option>
-                            <option value="共同好友">共同好友</option>
+                        <label>飲食需求 <span class="en">DIETARY</span></label>
+                        <select name="entry.2076817075">
+                            <option value="無特殊需求" selected>無特殊需求</option>
+                            <option value="素食">素食</option>
+                            <option value="不吃牛">不吃牛</option>
+                            <option value="不吃海鮮">不吃海鮮</option>
                         </select>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-col">
-                            <div class="form-group">
-                                <label>參加人數 <span class="en">ATTENDANCE COUNT</span></label>
-                                <input type="number" id="guestCount" name="entry.1302847197" min="0" required placeholder="0">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="conditional-fields">
-                        <div class="form-group">
-                            <label>飲食需求 <span class="en">DIETARY</span></label>
-                            <select name="entry.2076817075">
-                                <option value="無特殊需求" selected>無特殊需求</option>
-                                <option value="素食">素食</option>
-                                <option value="不吃牛">不吃牛</option>
-                                <option value="不吃海鮮">不吃海鮮</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>是否需要兒童椅 <span class="en">HIGH CHAIR</span></label>
-                            <select name="entry.755308040">
-                                <option value="不需要" selected>不需要</option>
-                                <option value="需要">需要 1 張</option>
-                                <option value="需要2張">需要 2 張</option>
-                            </select>
-                        </div>
-                    </div>
-
                     <div class="form-group">
-                        <label>喜帖形式（可複選） <span class="en">INVITATION TYPE</span></label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="entry.1214037399" value="紙本喜帖">
-                                <span class="checkbox-text">紙本喜帖</span>
-                            </label>
-                            <label class="checkbox-item">
-                                <input type="checkbox" name="entry.1214037399" value="電子喜帖">
-                                <span class="checkbox-text">電子喜帖</span>
-                            </label>
-                        </div>
+                        <label>是否需要兒童椅 <span class="en">HIGH CHAIR</span></label>
+                        <select name="entry.755308040">
+                            <option value="不需要" selected>不需要</option>
+                            <option value="需要">需要 1 張</option>
+                            <option value="需要2張">需要 2 張</option>
+                        </select>
                     </div>
+                </div>
 
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <label>給新人的祝福 <span class="en">BLESSING</span></label>
-                        <textarea name="entry.98604473" placeholder="留下您的悄悄話..."></textarea>
+                <div class="form-group">
+                    <label>喜帖形式（可複選） <span class="en">INVITATION TYPE</span></label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="entry.1214037399" value="紙本喜帖">
+                            <span class="checkbox-text">紙本喜帖</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="entry.1214037399" value="電子喜帖">
+                            <span class="checkbox-text">電子喜帖</span>
+                        </label>
                     </div>
+                </div>
 
-                    <div class="submit-btn-container">
-                        <button type="submit" class="submit-btn" id="submitBtn">確認送出 SUBMIT</button>
-                    </div>
-                </form>
-            </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label>給新人的祝福 <span class="en">BLESSING</span></label>
+                    <textarea name="entry.98604473" placeholder="留下您的悄悄話..."></textarea>
+                </div>
+
+                <div class="submit-btn-container">
+                    <button type="submit" class="submit-btn" id="submitBtn">確認送出 SUBMIT</button>
+                </div>
+            </form>
         </div>
     </section>
 
@@ -1061,9 +977,10 @@
             });
         });
 
-        function toggleTransport() {
-            const content = document.getElementById('transportContent');
-            const toggleBtn = document.querySelector('.transport-toggle');
+        /* 手機版第三屏交通指引開關函式 */
+        function toggleMobTransport() {
+            const content = document.getElementById('mobTransportContent');
+            const toggleBtn = document.querySelector('.mob-transport-toggle');
             
             if (content.style.display === 'block') {
                 content.style.display = 'none';
