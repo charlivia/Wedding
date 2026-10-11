@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charlie & Livia Wedding</title>
+    
+    <!-- 社群分享預覽縮圖設定 (Open Graph / LINE 預覽) -->
+    <meta property="og:title" content="Charlie & Livia Wedding | 我們的婚禮邀請函">
+    <meta property="og:description" content="2027.02.21 (日) 台北士林萬麗酒店，誠摯邀請您一同見證我們的幸福時刻。">
+    <meta property="og:image" content="https://github.com/user-attachments/assets/83582448-e52b-4cb9-84a6-a1a62817db84">
+    <meta property="og:type" content="website">
+
     <!-- 引入 Antic Didone, Forum, Noto Serif TC, Cormorant Garamond 字體 -->
     <link href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Forum&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Serif+TC:wght@400;500;700&display=swap" rel="stylesheet">
     
@@ -699,19 +706,32 @@
                 margin-bottom: 10px;
             }
 
-            /* 手機版 Google 地圖縮圖樣式 */
+            /* 手機版 Google 地圖縮圖樣式（點擊可直接導航） */
             .mob-map-container {
                 width: 100%;
                 margin-top: 15px;
                 border-radius: 8px;
                 overflow: hidden;
                 box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                position: relative;
+                display: block;
+                text-decoration: none;
             }
             .mob-map-container iframe {
                 width: 100%;
                 height: 180px;
                 border: 0;
                 display: block;
+                pointer-events: none; /* 確保點擊連結能順利觸發外層 a 標籤 */
+            }
+            .mob-map-overlay-link {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 2;
+                background: transparent;
             }
 
             .mob-time-item {
@@ -1013,10 +1033,11 @@
             <div class="mob-transport-content" id="mobTransportContent">
                 <p><strong>捷運：</strong>紅線<span>“捷運士林站”</span>2號出口，步行約 5 分鐘即可抵達。</p>
                 <p><strong>開車：</strong>飯店設有地下停車場，請於離場時至招待桌領取停車折抵。</p>
-                <!-- Google 地圖縮圖 -->
-                <div class="mob-map-container">
+                <!-- Google 地圖縮圖（點擊直接導航） -->
+                <a href="https://maps.app.goo.gl/kyEAHrL5pcHjMoCBA?g_st=ic" target="_blank" class="mob-map-container">
+                    <span class="mob-map-overlay-link"></span>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.5186987595785!2d121.526214!3d25.093388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a983b0f0b0f1%3A0x6a2c2b3e8e9b8b8b!2sRenaissance%20Taipei%20Shihlin%20Hotel!5e0!3m2!1szh-TW!2stw!4v1650000000000!5m2!1szh-TW!2stw" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+                </a>
             </div>
 
             <div class="mob-time-item">
@@ -1049,7 +1070,7 @@
         </div>
 
         <div class="rsvp-card-glass">
-            <!-- 採用隱藏 iframe 解決 CORS 跨域問題，並套用更新後的表單 Action -->
+            <!-- 採用隱藏 iframe 解決 CORS 跨域問題 -->
             <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSe-idpi_fNAr17N1fPW4aF88gNNwXDyx6FAayLoGVoiM-STBQ/formResponse" method="POST" target="hidden_iframe">
                 
                 <!-- 左欄容器：名字, 手機, 信箱, 與新人關係, 參加人數 -->
@@ -1222,7 +1243,7 @@
             }
         }
 
-        // RWD 動態切換卡片底圖
+        /* RWD 動態切換卡片底圖 */
         function updateCardImage() {
             const cardImg = document.getElementById('cardBgImg');
             if (window.innerWidth <= 768) {
@@ -1234,7 +1255,7 @@
         window.addEventListener('resize', updateCardImage);
         window.addEventListener('DOMContentLoaded', updateCardImage);
 
-        // 倒數計時邏輯
+        /* 倒數計時邏輯 */
         const weddingDate = new Date("2027-02-21T12:00:00").getTime();
         
         function updateCountdown() {
