@@ -341,7 +341,7 @@
         }
 
         .form-group {
-            margin-bottom: 32px; /* 題目與題目之間的距離 */
+            margin-bottom: 32px; 
         }
 
         /* 每一題的標題 (label) 與回答欄位之間的距離：維持 1px */
@@ -465,7 +465,7 @@
 
         .submit-btn-container {
             text-align: center;
-            margin-top: 39px; /* 按鈕整顆再往上移 3px */
+            margin-top: 39px; 
         }
 
         /* 確認送出按鈕：預設空心按鈕（邊框 1px），hover 及點擊改為實心 #770000 */
@@ -502,19 +502,51 @@
             box-shadow: none;
         }
 
-        .bottom-photo-section {
-            padding: 0 20px 100px 20px;
-            max-width: 800px;
-            margin: 0 auto;
+        /* ========================================= */
+        /* 5. 最後一屏滿版照片與署名區塊 (RWD 切換) */
+        /* ========================================= */
+        .final-photo-section {
+            width: 100%;
+            background-color: var(--bg);
+            padding: 0 0 60px 0;
+            text-align: center;
         }
 
-        .bottom-image {
+        .final-img-wrapper {
+            width: 100%;
+            line-height: 0;
+            font-size: 0;
+        }
+
+        .final-img {
             width: 100%;
             height: auto;
+            display: block;
+        }
+
+        /* 手機版滿版照片 */
+        .final-img-mobile {
+            display: block;
+        }
+        /* PC版滿版照片 */
+        .final-img-pc {
+            display: none;
+        }
+
+        /* 署名 Charlie & Livia 樣式 */
+        .final-signature {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #770000;
+            letter-spacing: 2px;
+            margin-top: 35px;
+            text-align: right;
+            padding-right: 12vw;
         }
 
         /* ========================================= */
-        /* 手機版專屬優化 (預留 460px 底部空間給底圖) */
+        /* 手機版專屬優化 (max-width: 768px) - 絕對不更動 */
         /* ========================================= */
         @media (max-width: 768px) {
             .hero {
@@ -719,23 +751,131 @@
                 flex-direction: column;
                 gap: 0;
             }
+
+            /* 手機版顯示手機圖片，隱藏PC圖片 */
+            .final-img-mobile { display: block; }
+            .final-img-pc { display: none; }
+
+            /* 手機版署名右側留白與級距微調 */
+            .final-signature {
+                font-size: 1.4rem;
+                padding-right: 8vw;
+                margin-top: 25px;
+            }
         }
 
+        /* ========================================= */
+        /* PC 版專屬優化 (min-width: 769px) - 動態保留高度節點 */
+        /* ========================================= */
         @media (min-width: 769px) {
             .rsvp-section-immersive {
-                background-image: url('https://github.com/user-attachments/assets/ad941d4f-0120-4232-9a0b-89ddff6c0b94');
+                background-image: url('https://github.com/user-attachments/assets/4d4a7877-a305-48a7-bb79-a7df28341cdc');
                 background-size: 100% auto;
-                background-position: center bottom;
-                padding: 100px 20px 200px 20px;
+                background-position: center bottom; 
+                padding: 80px 20px 500px 20px; /* 預設 769px 至 1000px 區間保留 500px */
+            }
+
+            .rsvp-header-box {
+                margin-bottom: 40px; 
             }
 
             .rsvp-title-logo {
-                width: 260px;
+                width: 221px; /* 縮小 15% */
             }
 
             .rsvp-subtext {
                 font-size: 15px;
                 font-weight: 700;
+            }
+
+            /* PC 版玻璃卡片拓寬以容納兩欄 */
+            .rsvp-card-glass {
+                max-width: 900px;
+                padding: 60px 50px;
+            }
+
+            /* 將表單主體改為左右兩欄 Flex 容器 */
+            #rsvpForm {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
+            /* 左右欄容器設定，寬度各佔 47% */
+            .form-column-left,
+            .form-column-right {
+                width: 47%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* 確保欄位內部的間距一致 */
+            .form-column-left .form-group,
+            .form-column-right .form-group,
+            .form-column-left .form-row,
+            .form-column-right .form-row {
+                margin-bottom: 32px;
+            }
+            
+            .form-column-left .form-group:last-child,
+            .form-column-right .form-group:last-child {
+                margin-bottom: 0;
+            }
+
+            /* 給新人的祝福與送出按鈕橫跨整行置中底部 */
+            .form-column-full {
+                width: 100%;
+                margin-top: 32px;
+            }
+
+            .submit-btn-container {
+                width: 100%;
+                text-align: center;
+                margin-top: 40px;
+            }
+
+            /* PC版顯示PC圖片，隱藏手機圖片 */
+            .final-img-mobile { display: none; }
+            .final-img-pc { display: block; }
+        }
+
+        /* 1000px 至 1280px 之間：底圖底部保留高度從 500px 平滑遞增至 650px */
+        @media (min-width: 1000px) {
+            .rsvp-section-immersive {
+                padding-bottom: 500px;
+            }
+        }
+
+        @media (min-width: 1140px) {
+            .rsvp-section-immersive {
+                padding-bottom: 575px;
+            }
+        }
+
+        /* 1280px 至 1920px 之間：底圖底部保留高度從 650px 平滑遞增至 980px */
+        @media (min-width: 1280px) {
+            .rsvp-section-immersive {
+                padding-bottom: 650px;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .rsvp-section-immersive {
+                padding-bottom: 760px;
+            }
+        }
+
+        @media (min-width: 1680px) {
+            .rsvp-section-immersive {
+                padding-bottom: 870px;
+            }
+        }
+
+        /* 1920px 以上固定底圖底部保留 980px */
+        @media (min-width: 1920px) {
+            .rsvp-section-immersive {
+                padding-bottom: 980px;
             }
         }
     </style>
@@ -871,92 +1011,101 @@
             <!-- 採用隱藏 iframe 解決 CORS 跨域問題 -->
             <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSe-idpi_fNAr17N1fPW4aF88gNNwXDyx6FAayLoGVoiM-STBQ/formResponse" method="POST" target="hidden_iframe">
                 
-                <div class="form-group">
-                    <label>名字 <span class="en">NAME</span></label>
-                    <input type="text" name="entry.1801164509" required placeholder="請輸入名字"> 
-                </div>
+                <!-- 左欄容器：名字, 手機, 信箱, 與新人關係, 參加人數 -->
+                <div class="form-column-left">
+                    <div class="form-group">
+                        <label>名字 <span class="en">NAME</span></label>
+                        <input type="text" name="entry.1801164509" required placeholder="請輸入名字"> 
+                    </div>
 
-                <div class="form-group">
-                    <label>手機 <span class="en">PHONE NUMBER</span></label>
-                    <input type="tel" name="entry.1638580247" required placeholder="請輸入手機號碼"> 
-                </div>
+                    <div class="form-group">
+                        <label>手機 <span class="en">PHONE NUMBER</span></label>
+                        <input type="tel" name="entry.1638580247" required placeholder="請輸入手機號碼"> 
+                    </div>
 
-                <div class="form-group">
-                    <label>信箱 <span class="en">EMAIL</span></label>
-                    <input type="email" name="entry.499861683" required placeholder="example@gmail.com"> 
-                </div>
+                    <div class="form-group">
+                        <label>信箱 <span class="en">EMAIL</span></label>
+                        <input type="email" name="entry.499861683" required placeholder="example@gmail.com"> 
+                    </div>
 
-                <div class="form-group">
-                    <label>與新人關係 <span class="en">RELATIONSHIP</span></label>
-                    <select name="entry.1721649734" required>
-                        <option value="" disabled selected>請選擇您的關係</option>
-                        <option value="男方家人親戚">男方家人親戚</option>
-                        <option value="女方家人親戚">女方家人親戚</option>
-                        <option value="男方好友">男方好友</option>
-                        <option value="女方好友">女方好友</option>
-                        <option value="男方同事">男方同事</option>
-                        <option value="女方同事">女方同事</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label>與新人關係 <span class="en">RELATIONSHIP</span></label>
+                        <select name="entry.1721649734" required>
+                            <option value="" disabled selected>請選擇您的關係</option>
+                            <option value="男方家人親戚">男方家人親戚</option>
+                            <option value="女方家人親戚">女方家人親戚</option>
+                            <option value="男方好友">男方好友</option>
+                            <option value="女方好友">女方好友</option>
+                            <option value="男方同事">男方同事</option>
+                            <option value="女方同事">女方同事</option>
+                        </select>
+                    </div>
 
-                <div class="form-row">
-                    <div class="form-col">
-                        <div class="form-group">
-                            <label>參加人數 <span class="en">GUESTS</span></label>
-                            <input type="number" name="entry.1302847197" min="0" required placeholder="0">
+                    <div class="form-row">
+                        <div class="form-col" style="width: 100%;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label>參加人數 <span class="en">GUESTS</span></label>
+                                <input type="number" name="entry.1302847197" min="0" required placeholder="0">
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 飲食需求 (含「其他」連動輸入框) -->
-                <div class="form-group">
-                    <label>飲食需求 <span class="en">DIETARY</span></label>
-                    <select name="entry.2076817075" id="dietarySelect" required>
-                        <option value="" disabled selected>請選擇飲食需求</option>
-                        <option value="葷食（正常，無特殊禁忌）">葷食（正常，無特殊禁忌）</option>
-                        <option value="素食">素食</option>
-                        <option value="__other_option__">其他</option>
-                    </select>
-                </div>
+                <!-- 右欄容器：飲食需求, 自訂飲食, 兒童椅, 喜帖寄送方式, 地址 -->
+                <div class="form-column-right">
+                    <!-- 飲食需求 (含「其他」連動輸入框) -->
+                    <div class="form-group">
+                        <label>飲食需求 <span class="en">DIETARY</span></label>
+                        <select name="entry.2076817075" id="dietarySelect" required>
+                            <option value="" disabled selected>請選擇飲食需求</option>
+                            <option value="葷食（正常，無特殊禁忌）">葷食（正常，無特殊禁忌）</option>
+                            <option value="素食">素食</option>
+                            <option value="__other_option__">其他</option>
+                        </select>
+                    </div>
 
-                <!-- 當選擇「其他」時自動顯示的自訂輸入框 -->
-                <div class="form-group" id="dietary-other-group">
-                    <label>請註明飲食需求 <span class="en">SPECIFY DIETARY</span></label>
-                    <input type="text" name="entry.2076817075.other_option_response" id="dietaryOtherInput" placeholder="例如：不吃牛、不吃海鮮等">
-                </div>
+                    <!-- 當選擇「其他」時自動顯示的自訂輸入框 -->
+                    <div class="form-group" id="dietary-other-group">
+                        <label>請註明飲食需求 <span class="en">SPECIFY DIETARY</span></label>
+                        <input type="text" name="entry.2076817075.other_option_response" id="dietaryOtherInput" placeholder="例如：不吃牛、不吃海鮮等">
+                    </div>
 
-                <div class="form-group">
-                    <label>兒童椅 <span class="en">BABY CHAIR</span></label>
-                    <select name="entry.755308040" required>
-                        <option value="" disabled selected>請選擇是否需要</option>
-                        <option value="需要">需要</option>
-                        <option value="不需要">不需要</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label>兒童椅 <span class="en">BABY CHAIR</span></label>
+                        <select name="entry.755308040" required>
+                            <option value="" disabled selected>請選擇是否需要</option>
+                            <option value="需要">需要</option>
+                            <option value="不需要">不需要</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label>喜帖寄送方式（可複選） <span class="en">INVITATION TYPE</span></label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="entry.1214037399" value="紙本喜帖" id="paperInviteCheckbox">
-                            <span class="checkbox-text">紙本喜帖</span>
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="entry.1214037399" value="電子喜帖">
-                            <span class="checkbox-text">電子喜帖</span>
-                        </label>
+                    <div class="form-group">
+                        <label>喜帖寄送方式（可複選） <span class="en">INVITATION TYPE</span></label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="entry.1214037399" value="紙本喜帖" id="paperInviteCheckbox">
+                                <span class="checkbox-text">紙本喜帖</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="entry.1214037399" value="電子喜帖">
+                                <span class="checkbox-text">電子喜帖</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 只有勾選紙本喜帖才會出現的地址欄位 -->
+                    <div class="form-group" id="address-field-group">
+                        <label>紙本喜帖地址 <span class="en">ADDRESS</span></label>
+                        <input type="text" name="entry.2001038655" id="addressInput" placeholder="請輸入收件地址">
                     </div>
                 </div>
 
-                <!-- 只有勾選紙本喜帖才會出現的地址欄位 -->
-                <div class="form-group" id="address-field-group">
-                    <label>紙本喜帖地址 <span class="en">ADDRESS</span></label>
-                    <input type="text" name="entry.2001038655" id="addressInput" placeholder="請輸入收件地址">
-                </div>
-
-                <div class="form-group" style="margin-bottom: 20px;">
-                    <label>給新人的祝福 <span class="en">BLESSINGS</span></label>
-                    <textarea name="entry.98604473" placeholder="留下您的悄悄話..."></textarea>
+                <!-- 跨欄滿版：給新人的祝福與送出按鈕 -->
+                <div class="form-column-full">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label>給新人的祝福 <span class="en">BLESSINGS</span></label>
+                        <textarea name="entry.98604473" placeholder="留下您的悄悄話..."></textarea>
+                    </div>
                 </div>
 
                 <div class="submit-btn-container">
@@ -966,13 +1115,17 @@
         </div>
     </section>
 
+    <!-- 最後一屏滿版照片與署名區塊 -->
+    <section class="final-photo-section">
+        <div class="final-img-wrapper">
+            <img src="https://github.com/user-attachments/assets/9561e533-8f33-4385-8df3-3a3993bc8c5f" alt="Final Photo" class="final-img final-img-mobile">
+            <img src="https://github.com/user-attachments/assets/c14d3c04-bc2f-407c-ab89-5657d8322ef7" alt="Final Photo" class="final-img final-img-pc">
+        </div>
+        <div class="final-signature">Charlie & Livia</div>
+    </section>
+
     <!-- 隱藏的 iframe 用於接收 Google 表單提交結果 -->
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.submitted) { alert('感謝您的回覆，我們已收到您的祝福！期待與您分享這份喜悅！'); window.location.reload(); }"></iframe>
-
-    <!-- 結尾照片 -->
-    <div class="bottom-photo-section">
-        <img src="https://i.postimg.cc/d1VdxGM4/ART-1134.jpg" alt="Charlie & Livia" class="bottom-image">
-    </div>
 
     <script>
         // 1. 處理紙本喜帖勾選連動地址欄位顯示/隱藏
@@ -1036,7 +1189,7 @@
             if (window.innerWidth <= 768) {
                 cardImg.src = 'https://github.com/user-attachments/assets/793f7025-9789-4826-9b2a-1969a8dccfdd'; // 手機版底圖
             } else {
-                cardImg.src = 'https://github.com/user-attachments/assets/08c35491-9c88-4c70-9442-ca1abc496aa1'; // PC版底圖
+                cardImg.src = 'https://github.com/user-attachments/assets/08c35491-9c88-4c70-9442-ca1abc496aa1'; // PC版倒數卡片底圖
             }
         }
         window.addEventListener('resize', updateCardImage);
