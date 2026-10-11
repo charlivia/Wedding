@@ -1178,8 +1178,8 @@
     <!-- 最後一屏滿版照片與署名區塊 -->
     <section class="final-photo-section">
         <div class="final-img-wrapper">
-            <img src="https://github.com/user-attachments/assets/9561e533-8f33-4385-8df3-3a3993bc8c5f" alt="Final Photo" class="final-img final-img-mobile">
-            <img src="https://github.com/user-attachments/assets/c14d3c04-bc2f-407c-ab89-5657d8322ef7" alt="Final Photo" class="final-img final-img-pc">
+            <img src="https://github.com/user-attachments/assets/daae8a4b-2e1c-42da-af72-714c94eb2154" alt="Final Photo" class="final-img final-img-mobile">
+            <img src="https://github.com/user-attachments/assets/2bafa98b-530a-4060-ac5a-e29eca34b288" alt="Final Photo" class="final-img final-img-pc">
         </div>
         <div class="final-signature">Charlie & Livia</div>
     </section>
@@ -1233,7 +1233,7 @@
         function toggleMobTransport() {
             const content = document.getElementById('mobTransportContent');
             const toggleBtn = document.querySelector('.mob-transport-toggle');
-            
+
             if (content.style.display === 'block') {
                 content.style.display = 'none';
                 toggleBtn.classList.remove('active');
@@ -1257,7 +1257,7 @@
 
         /* 倒數計時邏輯 */
         const weddingDate = new Date("2027-02-21T12:00:00").getTime();
-        
+
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
@@ -1282,7 +1282,7 @@
             document.getElementById("minsNum").innerText = format(minutes);
             document.getElementById("secsNum").innerText = format(seconds);
         }
-        
+
         setInterval(updateCountdown, 1000); 
         updateCountdown(); 
     </script>
