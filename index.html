@@ -584,24 +584,26 @@
                 display: block; 
             }
 
+            /* 第二屏手機版倒數黑白底圖放大約 12% (width 112%) 且置中 */
             .countdown-section {
-                padding: 40px 15px 25px 15px;
+                padding: 40px 10px 25px 10px;
             }
             .countdown-card-wrapper {
-                max-width: 100%;
-                width: 100%;
+                max-width: 112%;
+                width: 112%;
                 margin: 0 auto;
+                transform: translateX(-5.3%);
             }
             .countdown-static-text {
                 top: 13%;
-                left: 13%; 
+                left: 15%; 
                 font-size: 15px; 
             }
             .countdown-timer-box {
                 top: 25%;
-                left: 13%; 
+                left: 15%; 
                 gap: 5vw;
-                transform: scale(0.9);
+                transform: scale(0.95);
                 transform-origin: top left;
             }
             .countdown-item {
@@ -615,9 +617,9 @@
                 font-size: 0.75rem;
             }
 
-            /* 第三屏手機版整區往上移 5px (將 padding-top 從 40px 調整為 35px) */
+            /* 第三屏手機版整區往上移 5px (padding-top 調整為 35px) */
             .wedding-day-section {
-                padding: 35px 20px 60px 20px;
+                padding: 35px 20px 45px 20px; 
             }
             .wedding-timeline-pc {
                 display: none; 
@@ -697,14 +699,29 @@
                 margin-bottom: 10px;
             }
 
+            /* 手機版 Google 地圖縮圖樣式 */
+            .mob-map-container {
+                width: 100%;
+                margin-top: 15px;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            }
+            .mob-map-container iframe {
+                width: 100%;
+                height: 180px;
+                border: 0;
+                display: block;
+            }
+
             .mob-time-item {
-                margin-bottom: 35px;
+                margin-bottom: 30px; 
             }
             .mob-time-img {
-                width: 78px;
+                width: 70px;
                 height: auto;
                 margin-top: 10px;
-                margin-bottom: 12px; 
+                margin-bottom: 10px; 
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
@@ -731,7 +748,7 @@
             .mob-banquet-img {
                 width: 320px;
                 height: auto;
-                margin-top: -25px;
+                margin-top: -15px;
                 display: block;
                 margin-left: auto;
                 margin-right: 0;
@@ -748,6 +765,22 @@
             .rsvp-card-glass {
                 padding: 35px 25px;
                 border-radius: 20px;
+            }
+
+            /* 確保手機版（單欄模式下）表單各題之間的標準上下間距完美恢復 */
+            #rsvpForm .form-group {
+                margin-bottom: 32px !important;
+            }
+            #rsvpForm .form-row {
+                display: block !important;
+                margin-bottom: 32px !important;
+            }
+            #rsvpForm .form-col {
+                width: 100% !important;
+            }
+            #rsvpForm .form-column-full {
+                margin-top: 0 !important;
+                margin-bottom: 32px !important;
             }
 
             .form-row {
@@ -980,6 +1013,10 @@
             <div class="mob-transport-content" id="mobTransportContent">
                 <p><strong>捷運：</strong>紅線<span>“捷運士林站”</span>2號出口，步行約 5 分鐘即可抵達。</p>
                 <p><strong>開車：</strong>飯店設有地下停車場，請於離場時至招待桌領取停車折抵。</p>
+                <!-- Google 地圖縮圖 -->
+                <div class="mob-map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.5186987595785!2d121.526214!3d25.093388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a983b0f0b0f1%3A0x6a2c2b3e8e9b8b8b!2sRenaissance%20Taipei%20Shihlin%20Hotel!5e0!3m2!1szh-TW!2stw!4v1650000000000!5m2!1szh-TW!2stw" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
 
             <div class="mob-time-item">
