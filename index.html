@@ -533,7 +533,7 @@
             display: none;
         }
 
-        /* 署名 Charlie & Livia 樣式（完美對應第一屏頂部 Forum 字型與大小設定） */
+        /* 署名 Charlie & Livia 樣式 */
         .final-signature {
             font-family: 'Forum', serif;
             font-size: 1.5rem;
@@ -546,7 +546,7 @@
         }
 
         /* ========================================= */
-        /* 手機版專屬優化 (max-width: 768px) - 絕對不更動 */
+        /* 手機版專屬優化 (max-width: 768px) */
         /* ========================================= */
         @media (max-width: 768px) {
             .hero {
@@ -615,8 +615,9 @@
                 font-size: 0.75rem;
             }
 
+            /* 第三屏手機版整區往上移 5px (將 padding-top 從 40px 調整為 35px) */
             .wedding-day-section {
-                padding: 40px 20px 60px 20px;
+                padding: 35px 20px 60px 20px;
             }
             .wedding-timeline-pc {
                 display: none; 
@@ -649,8 +650,10 @@
                 margin-bottom: 6px; 
             }
 
+            /* 手機版交通指引調整為同一行，避免箭頭換行 */
             .mob-transport-toggle {
                 display: inline-block;
+                white-space: nowrap;
                 margin-top: -3px; 
                 margin-bottom: 30px;
                 font-size: 0.85rem;
