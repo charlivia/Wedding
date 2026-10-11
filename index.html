@@ -1049,7 +1049,7 @@
         </div>
 
         <div class="rsvp-card-glass">
-            <!-- 採用隱藏 iframe 解決 CORS 跨域問題 -->
+            <!-- 採用隱藏 iframe 解決 CORS 跨域問題，並套用更新後的表單 Action -->
             <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSe-idpi_fNAr17N1fPW4aF88gNNwXDyx6FAayLoGVoiM-STBQ/formResponse" method="POST" target="hidden_iframe">
                 
                 <!-- 左欄容器：名字, 手機, 信箱, 與新人關係, 參加人數 -->
@@ -1077,8 +1077,6 @@
                             <option value="女方家人親戚">女方家人親戚</option>
                             <option value="男方好友">男方好友</option>
                             <option value="女方好友">女方好友</option>
-                            <option value="男方同事">男方同事</option>
-                            <option value="女方同事">女方同事</option>
                         </select>
                     </div>
 
