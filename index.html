@@ -436,20 +436,89 @@
         }
 
         .checkbox-item {
-            display: flex;
-            align-items: center;
+            display: flex !important;
+            align-items: center !important;
             cursor: pointer;
+            white-space: nowrap;
         }
 
+        /* 多選框（喜帖）：預設 #aeb1b8 外框，勾選時 1px #770000 外框，去除底色，加粗飽滿紅勾勾 */
         .checkbox-item input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
+            appearance: none;
+            -webkit-appearance: none;
+            width: 16px !important;
+            height: 16px !important;
+            flex-shrink: 0 !important;
+            display: inline-grid !important;
+            place-content: center;
             margin-right: 12px;
-            margin-top: 1px; 
+            margin-top: 0;
             border: 1px solid var(--border-color);
-            accent-color: var(--secondary);
+            border-radius: 2px;
+            outline: none;
             cursor: pointer;
-            -webkit-appearance: auto;
+            background-color: transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked {
+            border: 1px solid #770000;
+            background-color: transparent;
+        }
+
+        /* 勾勾粗細提升至 2.2px，線條厚實清晰 */
+        .checkbox-item input[type="checkbox"]::before {
+            content: "";
+            width: 10px;
+            height: 5px;
+            border-left: 2.2px solid #770000;
+            border-bottom: 2.2px solid #770000;
+            transform: rotate(-45deg) scale(0);
+            transform-origin: center;
+            transition: 0.15s transform ease-in-out;
+            margin-top: -2px;
+        }
+
+        .checkbox-item input[type="checkbox"]:checked::before {
+            transform: rotate(-45deg) scale(1);
+        }
+
+        /* 單選框（是否出席）：邊框細線為 1px 與送出按鈕完全一致 */
+        .checkbox-item input[type="radio"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 16px !important;
+            height: 16px !important;
+            flex-shrink: 0 !important;
+            display: inline-grid !important;
+            place-content: center;
+            margin-right: 12px;
+            margin-top: 0;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            outline: none;
+            cursor: pointer;
+            background-color: transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .checkbox-item input[type="radio"]:checked {
+            border: 1px solid #770000;
+            background-color: transparent;
+        }
+
+        .checkbox-item input[type="radio"]::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 0.15s transform ease-in-out;
+            background-color: #770000;
+        }
+
+        .checkbox-item input[type="radio"]:checked::before {
+            transform: scale(1);
         }
 
         .checkbox-text {
@@ -457,10 +526,16 @@
             color: var(--text-dark);
             letter-spacing: 1px;
             line-height: 1.2;
+            display: inline-block;
         }
 
-        /* 動態隱藏區塊 (地址欄位、飲食其他欄位) */
-        #address-field-group, #dietary-other-group {
+        /* 動態隱藏區塊 */
+        #attendee-left-fields,
+        #attendee-right-fields,
+        #blessing-field-group,
+        #address-field-group,
+        #dietary-other-group,
+        #guests-other-group {
             display: none;
             animation: fadeIn 0.4s ease;
         }
@@ -752,14 +827,14 @@
                 font-weight: 700;
                 color: var(--text-dark);
                 letter-spacing: 2px;
-                margin-bottom: 0px;
+                margin-bottom: 0px; 
             }
             .mob-time-loc {
                 font-family: 'Noto Serif TC', serif;
                 font-size: 0.9rem;
                 color: var(--text-light);
                 letter-spacing: 1px;
-                margin-top: -2px;
+                margin-top: -2px; 
             }
             .mob-time-loc .en-didone {
                 font-family: 'Antic Didone', serif;
@@ -774,7 +849,7 @@
                 margin-right: 0;
             }
             
-            /* 手機版 RSVP 區塊：底部預留 460px 確保人物與煙火完整露出 */
+            /* 手機版 RSVP 區塊：底圖預留 460px */
             .rsvp-section-immersive {
                 background-image: url('https://github.com/user-attachments/assets/83c4db7d-f172-45ac-9a79-861da9961f92');
                 background-size: 100% auto;
@@ -851,7 +926,7 @@
                 padding: 60px 50px;
             }
 
-            /* 將表單主體改為左右兩欄 Flex 容器 */
+            /* 將表單主體改為 Flex 容器 */
             #rsvpForm {
                 display: flex;
                 flex-wrap: wrap;
@@ -859,12 +934,23 @@
                 align-items: flex-start;
             }
 
-            /* 左右欄容器設定，寬度各佔 47% */
-            .form-column-left,
+            /* 預設（尚未勾選或無法出席時）：左欄為滿版 100%，底線長度與下方完全一致 */
+            .form-column-left {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                transition: width 0.3s ease;
+            }
+
             .form-column-right {
                 width: 47%;
                 display: flex;
                 flex-direction: column;
+            }
+
+            /* 當勾選「我要去～～」時，左欄自動縮為 47% 形成精緻雙欄 */
+            #rsvpForm.two-columns .form-column-left {
+                width: 47%;
             }
 
             /* 確保欄位內部的間距一致 */
@@ -1073,21 +1159,14 @@
             <!-- 採用隱藏 iframe 解決 CORS 跨域問題 -->
             <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSe-idpi_fNAr17N1fPW4aF88gNNwXDyx6FAayLoGVoiM-STBQ/formResponse" method="POST" target="hidden_iframe">
                 
-                <!-- 左欄容器：名字, 手機, 信箱, 與新人關係, 參加人數 -->
+                <!-- 實際送出至 Google 表單的隱藏參加人數輸入框（保證後台收到的值絕對是乾淨數字） -->
+                <input type="hidden" name="entry.1302847197" id="realGuestsInput" value="1">
+
+                <!-- 左欄容器：名字, 與新人關係, 是否出席（單選核取按鈕）, 手機, 信箱 -->
                 <div class="form-column-left">
                     <div class="form-group">
                         <label>名字 <span class="en">NAME</span></label>
                         <input type="text" name="entry.1801164509" required placeholder="請輸入名字"> 
-                    </div>
-
-                    <div class="form-group">
-                        <label>手機 <span class="en">PHONE NUMBER</span></label>
-                        <input type="tel" name="entry.1638580247" required placeholder="請輸入手機號碼"> 
-                    </div>
-
-                    <div class="form-group">
-                        <label>信箱 <span class="en">EMAIL</span></label>
-                        <input type="email" name="entry.499861683" required placeholder="example@gmail.com"> 
                     </div>
 
                     <div class="form-group">
@@ -1101,22 +1180,60 @@
                         </select>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-col" style="width: 100%;">
-                            <div class="form-group" style="margin-bottom: 0;">
-                                <label>參加人數 <span class="en">GUESTS</span></label>
-                                <input type="number" name="entry.1302847197" min="0" required placeholder="0">
-                            </div>
+                    <!-- 是否出席：單選框（預設不勾選，由賓客主動點選） -->
+                    <div class="form-group">
+                        <label>是否出席 <span class="en">ATTENDANCE</span></label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="radio" name="entry.10225308" value="我要去～～" required>
+                                <span class="checkbox-text">我要去～～</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="radio" name="entry.10225308" value="無法QQ，寫下給你們的祝福">
+                                <span class="checkbox-text">無法QQ，寫下給你們的祝福</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 出席者專屬欄位（左欄：手機、信箱） -->
+                    <div id="attendee-left-fields">
+                        <div class="form-group">
+                            <label>手機 <span class="en">PHONE NUMBER</span></label>
+                            <input type="tel" name="entry.1638580247" id="phoneInput" placeholder="請輸入手機號碼"> 
+                        </div>
+
+                        <div class="form-group">
+                            <label>信箱 <span class="en">EMAIL</span></label>
+                            <input type="email" name="entry.499861683" id="emailInput" placeholder="example@gmail.com"> 
                         </div>
                     </div>
                 </div>
 
-                <!-- 右欄容器：飲食需求, 自訂飲食, 兒童椅, 喜帖寄送方式, 地址 -->
-                <div class="form-column-right">
+                <!-- 右欄容器：出席者專屬欄位（參加人數置於右欄第一題、飲食需求, 兒童椅, 喜帖寄送方式, 地址） -->
+                <div class="form-column-right" id="attendee-right-fields">
+                    <!-- 參加人數：提示詞為「請選擇人數（若有小朋友也算在人數內）」 -->
+                    <div class="form-group">
+                        <label>參加人數 <span class="en">GUESTS</span></label>
+                        <select id="guestsSelect">
+                            <option value="" disabled selected>請選擇人數（若有小朋友也算在人數內）</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="other">其他（請自行輸入）</option>
+                        </select>
+                    </div>
+
+                    <!-- 當選擇「其他」時自動顯示的數字輸入框 -->
+                    <div class="form-group" id="guests-other-group">
+                        <label>請輸入參加人數 <span class="en">NUMBER OF GUESTS</span></label>
+                        <input type="number" id="guestsCustomInput" min="1" placeholder="例如：5">
+                    </div>
+
                     <!-- 飲食需求 (含「其他」連動輸入框) -->
                     <div class="form-group">
                         <label>飲食需求 <span class="en">DIETARY</span></label>
-                        <select name="entry.2076817075" id="dietarySelect" required>
+                        <select name="entry.2076817075" id="dietarySelect">
                             <option value="" disabled selected>請選擇飲食需求</option>
                             <option value="葷食（正常，無特殊禁忌）">葷食（正常，無特殊禁忌）</option>
                             <option value="素食">素食</option>
@@ -1132,7 +1249,7 @@
 
                     <div class="form-group">
                         <label>兒童椅 <span class="en">BABY CHAIR</span></label>
-                        <select name="entry.755308040" required>
+                        <select name="entry.755308040" id="babyChairSelect">
                             <option value="" disabled selected>請選擇是否需要</option>
                             <option value="需要">需要</option>
                             <option value="不需要">不需要</option>
@@ -1160,15 +1277,16 @@
                     </div>
                 </div>
 
-                <!-- 跨欄滿版：給新人的祝福與送出按鈕 -->
-                <div class="form-column-full">
+                <!-- 跨欄滿版：留下你想說的話（提示詞更新） -->
+                <div class="form-column-full" id="blessing-field-group">
                     <div class="form-group" style="margin-bottom: 0;">
-                        <label>給新人的祝福 <span class="en">BLESSINGS</span></label>
-                        <textarea name="entry.98604473" placeholder="留下您的悄悄話..."></textarea>
+                        <label>留下你想說的話 <span class="en">BLESSINGS</span></label>
+                        <textarea name="entry.98604473" placeholder="對我們的愛恨情仇，一次說清楚吧<3"></textarea>
                     </div>
                 </div>
 
-                <div class="submit-btn-container">
+                <!-- 確認送出按鈕：預設永遠顯示 -->
+                <div class="submit-btn-container" id="submit-btn-wrapper">
                     <button type="submit" class="submit-btn" id="submitBtn">確認送出 <span class="en-btn">SUBMIT</span></button>
                 </div>
             </form>
@@ -1188,15 +1306,106 @@
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.submitted) { alert('感謝您的回覆，我們已收到您的祝福！期待與您分享這份喜悅！'); window.location.reload(); }"></iframe>
 
     <script>
-        // 1. 處理紙本喜帖勾選連動地址欄位顯示/隱藏
+        // 1. 處理是否出席單選勾選連動邏輯
+        const formElement = document.getElementById('rsvpForm');
+        const attendanceRadios = document.querySelectorAll('input[name="entry.10225308"]');
+        const attendeeLeftFields = document.getElementById('attendee-left-fields');
+        const attendeeRightFields = document.getElementById('attendee-right-fields');
+        const blessingGroup = document.getElementById('blessing-field-group');
+        
+        const phoneInput = document.getElementById('phoneInput');
+        const emailInput = document.getElementById('emailInput');
+        const guestsSelect = document.getElementById('guestsSelect');
+        const guestsCustomInput = document.getElementById('guestsCustomInput');
+        const realGuestsInput = document.getElementById('realGuestsInput');
+        const dietarySelect = document.getElementById('dietarySelect');
+        const babyChairSelect = document.getElementById('babyChairSelect');
+
+        function handleAttendanceChange(value) {
+            // 只要選取了出席或無法，皆展開「留下你想說的話」
+            blessingGroup.style.display = 'block';
+
+            if (value === '我要去～～') {
+                // 切換為 PC 版雙欄模式
+                formElement.classList.add('two-columns');
+                
+                // 完整展示出席相關題目
+                attendeeLeftFields.style.display = 'block';
+                attendeeRightFields.style.display = 'block';
+                
+                // 加入必填屬性
+                phoneInput.setAttribute('required', 'required');
+                emailInput.setAttribute('required', 'required');
+                guestsSelect.setAttribute('required', 'required');
+                dietarySelect.setAttribute('required', 'required');
+                babyChairSelect.setAttribute('required', 'required');
+                
+                if (guestsSelect.value === 'other') {
+                    guestsCustomInput.setAttribute('required', 'required');
+                }
+                
+                if (paperCheckbox.checked) {
+                    addressInput.setAttribute('required', 'required');
+                }
+            } else if (value === '無法QQ，寫下給你們的祝福') {
+                // 切換為單欄滿版模式
+                formElement.classList.remove('two-columns');
+                
+                // 隱藏所有出席題目
+                attendeeLeftFields.style.display = 'none';
+                attendeeRightFields.style.display = 'none';
+                
+                // 移除必填驗證，避免送出受阻
+                phoneInput.removeAttribute('required');
+                emailInput.removeAttribute('required');
+                guestsSelect.removeAttribute('required');
+                guestsCustomInput.removeAttribute('required');
+                dietarySelect.removeAttribute('required');
+                babyChairSelect.removeAttribute('required');
+                addressInput.removeAttribute('required');
+            }
+        }
+
+        attendanceRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                handleAttendanceChange(this.value);
+            });
+        });
+
+        // 2. 處理參加人數下拉選單與自訂數字連動邏輯
+        const guestsOtherGroup = document.getElementById('guests-other-group');
+
+        guestsSelect.addEventListener('change', function() {
+            if (this.value === 'other') {
+                guestsOtherGroup.style.display = 'block';
+                guestsCustomInput.setAttribute('required', 'required');
+                realGuestsInput.value = guestsCustomInput.value || '';
+            } else {
+                guestsOtherGroup.style.display = 'none';
+                guestsCustomInput.removeAttribute('required');
+                guestsCustomInput.value = '';
+                realGuestsInput.value = this.value;
+            }
+        });
+
+        guestsCustomInput.addEventListener('input', function() {
+            if (guestsSelect.value === 'other') {
+                realGuestsInput.value = this.value;
+            }
+        });
+
+        // 3. 處理紙本喜帖勾選連動地址欄位顯示/隱藏
         const paperCheckbox = document.getElementById('paperInviteCheckbox');
         const addressGroup = document.getElementById('address-field-group');
         const addressInput = document.getElementById('addressInput');
 
         paperCheckbox.addEventListener('change', function() {
+            const currentAttendance = document.querySelector('input[name="entry.10225308"]:checked')?.value;
             if (this.checked) {
                 addressGroup.style.display = 'block';
-                addressInput.setAttribute('required', 'required');
+                if (currentAttendance === '我要去～～') {
+                    addressInput.setAttribute('required', 'required');
+                }
             } else {
                 addressGroup.style.display = 'none';
                 addressInput.removeAttribute('required');
@@ -1204,12 +1413,12 @@
             }
         });
 
-        // 2. 處理飲食需求選到「其他」時連動自訂輸入框顯示/隱藏
-        const dietarySelect = document.getElementById('dietarySelect');
+        // 4. 處理飲食需求選到「其他」時連動自訂輸入框顯示/隱藏
+        const dietarySelectEl = document.getElementById('dietarySelect');
         const dietaryOtherGroup = document.getElementById('dietary-other-group');
         const dietaryOtherInput = document.getElementById('dietaryOtherInput');
 
-        dietarySelect.addEventListener('change', function() {
+        dietarySelectEl.addEventListener('change', function() {
             if (this.value === '__other_option__') {
                 dietaryOtherGroup.style.display = 'block';
                 dietaryOtherInput.setAttribute('required', 'required');
@@ -1220,7 +1429,7 @@
             }
         });
 
-        // 3. 處理表單送出狀態
+        // 5. 處理表單送出狀態
         window.submitted = false;
         document.getElementById('rsvpForm').addEventListener('submit', function() {
             const btn = document.getElementById('submitBtn');
@@ -1233,7 +1442,7 @@
         function toggleMobTransport() {
             const content = document.getElementById('mobTransportContent');
             const toggleBtn = document.querySelector('.mob-transport-toggle');
-
+            
             if (content.style.display === 'block') {
                 content.style.display = 'none';
                 toggleBtn.classList.remove('active');
@@ -1257,7 +1466,7 @@
 
         /* 倒數計時邏輯 */
         const weddingDate = new Date("2027-02-21T12:00:00").getTime();
-
+        
         function updateCountdown() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
@@ -1282,7 +1491,7 @@
             document.getElementById("minsNum").innerText = format(minutes);
             document.getElementById("secsNum").innerText = format(seconds);
         }
-
+        
         setInterval(updateCountdown, 1000); 
         updateCountdown(); 
     </script>
