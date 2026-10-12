@@ -466,7 +466,7 @@
             background-color: transparent;
         }
 
-        /* 勾勾粗細提升至 2.2px，線條厚實清晰 */
+        /* 勾勾粗細為 2.2px，厚實清晰 */
         .checkbox-item input[type="checkbox"]::before {
             content: "";
             width: 10px;
@@ -1264,7 +1264,7 @@
                                 <span class="checkbox-text">紙本喜帖</span>
                             </label>
                             <label class="checkbox-item">
-                                <input type="checkbox" name="entry.1214037399" value="電子喜帖">
+                                <input type="checkbox" name="entry.1214037399" value="電子喜帖" id="electronicInviteCheckbox">
                                 <span class="checkbox-text">電子喜帖</span>
                             </label>
                         </div>
@@ -1319,7 +1319,12 @@
         const guestsCustomInput = document.getElementById('guestsCustomInput');
         const realGuestsInput = document.getElementById('realGuestsInput');
         const dietarySelect = document.getElementById('dietarySelect');
+        const dietaryOtherInput = document.getElementById('dietaryOtherInput');
         const babyChairSelect = document.getElementById('babyChairSelect');
+        const paperCheckbox = document.getElementById('paperInviteCheckbox');
+        const electronicCheckbox = document.getElementById('electronicInviteCheckbox');
+        const addressGroup = document.getElementById('address-field-group');
+        const addressInput = document.getElementById('addressInput');
 
         function handleAttendanceChange(value) {
             // 只要選取了出席或無法，皆展開「留下你想說的話」
@@ -1343,7 +1348,9 @@
                 if (guestsSelect.value === 'other') {
                     guestsCustomInput.setAttribute('required', 'required');
                 }
-                
+                if (dietarySelect.value === '__other_option__') {
+                    dietaryOtherInput.setAttribute('required', 'required');
+                }
                 if (paperCheckbox.checked) {
                     addressInput.setAttribute('required', 'required');
                 }
@@ -1361,6 +1368,7 @@
                 guestsSelect.removeAttribute('required');
                 guestsCustomInput.removeAttribute('required');
                 dietarySelect.removeAttribute('required');
+                dietaryOtherInput.removeAttribute('required');
                 babyChairSelect.removeAttribute('required');
                 addressInput.removeAttribute('required');
             }
@@ -1395,10 +1403,6 @@
         });
 
         // 3. 處理紙本喜帖勾選連動地址欄位顯示/隱藏
-        const paperCheckbox = document.getElementById('paperInviteCheckbox');
-        const addressGroup = document.getElementById('address-field-group');
-        const addressInput = document.getElementById('addressInput');
-
         paperCheckbox.addEventListener('change', function() {
             const currentAttendance = document.querySelector('input[name="entry.10225308"]:checked')?.value;
             if (this.checked) {
@@ -1414,11 +1418,9 @@
         });
 
         // 4. 處理飲食需求選到「其他」時連動自訂輸入框顯示/隱藏
-        const dietarySelectEl = document.getElementById('dietarySelect');
         const dietaryOtherGroup = document.getElementById('dietary-other-group');
-        const dietaryOtherInput = document.getElementById('dietaryOtherInput');
 
-        dietarySelectEl.addEventListener('change', function() {
+        dietarySelect.addEventListener('change', function() {
             if (this.value === '__other_option__') {
                 dietaryOtherGroup.style.display = 'block';
                 dietaryOtherInput.setAttribute('required', 'required');
@@ -1429,9 +1431,35 @@
             }
         });
 
-        // 5. 處理表單送出狀態
+        // 5. 處理表單送出狀態與進階驗證
         window.submitted = false;
-        document.getElementById('rsvpForm').addEventListener('submit', function() {
+        formElement.addEventListener('submit', function(e) {
+            const currentAttendance = document.querySelector('input[name="entry.10225308"]:checked')?.value;
+            
+            // 當勾選出席時進行嚴格驗證
+            if (currentAttendance === '我要去～～') {
+                // 驗證參加人數：確保數值大於等於 1
+                const guestsNum = parseInt(realGuestsInput.value, 10);
+                if (isNaN(guestsNum) || guestsNum < 1) {
+                    e.preventDefault();
+                    if (guestsSelect.value === 'other') {
+                        guestsCustomInput.focus();
+                    } else {
+                        guestsSelect.focus();
+                    }
+                    alert('參加人數請至少填寫 1 位以上喔！');
+                    return false;
+                }
+
+                // 驗證喜帖寄送方式：紙本與電子喜帖至少需勾選一項（可單選也可複選）
+                if (!paperCheckbox.checked && !electronicCheckbox.checked) {
+                    e.preventDefault();
+                    paperCheckbox.focus();
+                    alert('請至少勾選一種喜帖寄送方式（紙本或電子喜帖）！');
+                    return false;
+                }
+            }
+
             const btn = document.getElementById('submitBtn');
             btn.disabled = true;
             btn.innerHTML = '傳送中...';
