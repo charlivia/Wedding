@@ -1159,8 +1159,8 @@
             <!-- 採用隱藏 iframe 解決 CORS 跨域問題 -->
             <form id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSe-idpi_fNAr17N1fPW4aF88gNNwXDyx6FAayLoGVoiM-STBQ/formResponse" method="POST" target="hidden_iframe">
                 
-                <!-- 實際送出至 Google 表單的隱藏參加人數輸入框（保證後台收到的值絕對是乾淨數字） -->
-                <input type="hidden" name="entry.1302847197" id="realGuestsInput" value="1">
+                <!-- 實際送出至 Google 表單的隱藏參加人數輸入框（預設完全空白，不參加時絕不帶入 1） -->
+                <input type="hidden" name="entry.1302847197" id="realGuestsInput" value="">
 
                 <!-- 左欄容器：名字, 與新人關係, 是否出席（單選核取按鈕）, 手機, 信箱 -->
                 <div class="form-column-left">
@@ -1277,7 +1277,7 @@
                     </div>
                 </div>
 
-                <!-- 跨欄滿版：留下你想說的話（提示詞更新） -->
+                <!-- 跨欄滿版：留下你想說的話 -->
                 <div class="form-column-full" id="blessing-field-group">
                     <div class="form-group" style="margin-bottom: 0;">
                         <label>留下你想說的話 <span class="en">BLESSINGS</span></label>
@@ -1345,9 +1345,16 @@
                 dietarySelect.setAttribute('required', 'required');
                 babyChairSelect.setAttribute('required', 'required');
                 
+                // 依目前選擇狀態設定人數值
                 if (guestsSelect.value === 'other') {
                     guestsCustomInput.setAttribute('required', 'required');
+                    realGuestsInput.value = guestsCustomInput.value || '';
+                } else if (guestsSelect.value) {
+                    realGuestsInput.value = guestsSelect.value;
+                } else {
+                    realGuestsInput.value = '';
                 }
+
                 if (dietarySelect.value === '__other_option__') {
                     dietaryOtherInput.setAttribute('required', 'required');
                 }
@@ -1361,6 +1368,9 @@
                 // 隱藏所有出席題目
                 attendeeLeftFields.style.display = 'none';
                 attendeeRightFields.style.display = 'none';
+                
+                // 不出席時，強制清空參加人數值（確保後台試算表為完全空白無內容）
+                realGuestsInput.value = '';
                 
                 // 移除必填驗證，避免送出受阻
                 phoneInput.removeAttribute('required');
@@ -1458,6 +1468,9 @@
                     alert('請至少勾選一種喜帖寄送方式（紙本或電子喜帖）！');
                     return false;
                 }
+            } else if (currentAttendance === '無法QQ，寫下給你們的祝福') {
+                // 確保送出不出席時，人數欄位為空
+                realGuestsInput.value = '';
             }
 
             const btn = document.getElementById('submitBtn');
