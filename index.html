@@ -1196,7 +1196,7 @@
                         </select>
                     </div>
 
-                    <!-- 是否出席：單選框（預設不勾選，由賓客主動點選） -->
+                    <!-- 是否出席：單選框（value 嚴格對應 Google 表單後台選項，畫面呈現 Q_Q） -->
                     <div class="form-group">
                         <label>是否出席 <span class="en">ATTENDANCE</span></label>
                         <div class="checkbox-group">
@@ -1205,7 +1205,7 @@
                                 <span class="checkbox-text">我要去～～</span>
                             </label>
                             <label class="checkbox-item">
-                                <input type="radio" name="entry.10225308" value="無法Q_Q，寫下給你們的祝福">
+                                <input type="radio" name="entry.10225308" value="無法QQ，寫下給你們的祝福" required>
                                 <span class="checkbox-text">無法Q_Q，寫下給你們的祝福</span>
                             </label>
                         </div>
@@ -1415,7 +1415,8 @@
                 if (paperCheckbox.checked) {
                     addressInput.setAttribute('required', 'required');
                 }
-            } else if (value === '無法Q_Q，寫下給你們的祝福') {
+            } else {
+                // 只要不是「我要去～～」，全數判定為不出席
                 // 切換為單欄滿版模式
                 formElement.classList.remove('two-columns');
                 
@@ -1534,7 +1535,7 @@
                     alert('請至少勾選一種喜帖寄送方式（電子或紙本喜帖）！');
                     return false;
                 }
-            } else if (currentAttendance === '無法Q_Q，寫下給你們的祝福') {
+            } else {
                 // 確保送出不出席時，人數欄位為空
                 realGuestsInput.value = '';
                 ceremonyRadios.forEach(r => r.checked = false);
