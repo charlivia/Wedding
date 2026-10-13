@@ -241,7 +241,7 @@
             margin-left: 0;
         }
 
-        /* 下方三欄時程橫向排列 */
+        /* 下方時程橫向排列（維持原始間距 50px 靠左排列） */
         .pc-timeline-row {
             display: flex;
             gap: 50px;
@@ -488,7 +488,7 @@
             transform: rotate(-45deg) scale(1);
         }
 
-        /* 單選框（是否出席）：邊框細線為 1px 與送出按鈕完全一致 */
+        /* 單選框（是否出席、證婚）：邊框細線為 1px 與送出按鈕完全一致 */
         .checkbox-item input[type="radio"] {
             appearance: none;
             -webkit-appearance: none;
@@ -534,13 +534,22 @@
             display: inline-block;
         }
 
+        /* 證婚題選項括號內樣式：顏色為與選項一致的黑 (var(--text-dark))、稍小字級、常規 400 粗細 */
+        .ceremony-note {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-left: 2px;
+        }
+
         /* 動態隱藏區塊 */
         #attendee-left-fields,
         #attendee-right-fields,
         #blessing-field-group,
         #address-field-group,
         #dietary-other-group,
-        #guests-other-group {
+        #guests-other-group,
+        #ceremony-field-group {
             display: none;
             animation: fadeIn 0.4s ease;
         }
@@ -1088,7 +1097,8 @@
                 <div class="pc-hotel-text">台北士林萬麗酒店</div>
 
                 <div class="pc-timeline-row">
-                    <div class="pc-time-item">
+                    <!-- 11:00 證婚（VIP 專屬項目，預設隱藏） -->
+                    <div class="pc-time-item ceremony-timeline-item" style="display: none;">
                         <img src="https://github.com/user-attachments/assets/4eed68bd-1aa8-4f55-bae5-c4308f7eae5c" alt="11:00" class="pc-time-img">
                         <div class="pc-time-title">證婚</div>
                         <div class="pc-time-loc"><span class="en-didone">RF</span> 空中花園</div>
@@ -1131,7 +1141,8 @@
                 </a>
             </div>
 
-            <div class="mob-time-item">
+            <!-- 11:00 證婚（手機版 VIP 專屬項目，預設隱藏） -->
+            <div class="mob-time-item ceremony-timeline-item" style="display: none;">
                 <img src="https://github.com/user-attachments/assets/4eed68bd-1aa8-4f55-bae5-c4308f7eae5c" alt="11:00" class="mob-time-img">
                 <div class="mob-time-title">證婚</div>
                 <div class="mob-time-loc"><span class="en-didone">RF</span> 空中花園</div>
@@ -1171,7 +1182,7 @@
                 <div class="form-column-left">
                     <div class="form-group">
                         <label>名字 <span class="en">NAME</span></label>
-                        <input type="text" name="entry.1801164509" required placeholder="請輸入名字"> 
+                        <input type="text" name="entry.1801164509" required placeholder="請輸入中文本名"> 
                     </div>
 
                     <div class="form-group">
@@ -1194,8 +1205,8 @@
                                 <span class="checkbox-text">我要去～～</span>
                             </label>
                             <label class="checkbox-item">
-                                <input type="radio" name="entry.10225308" value="無法QQ，寫下給你們的祝福">
-                                <span class="checkbox-text">無法QQ，寫下給你們的祝福</span>
+                                <input type="radio" name="entry.10225308" value="無法Q_Q，寫下給你們的祝福">
+                                <span class="checkbox-text">無法Q_Q，寫下給你們的祝福</span>
                             </label>
                         </div>
                     </div>
@@ -1214,13 +1225,13 @@
                     </div>
                 </div>
 
-                <!-- 右欄容器：出席者專屬欄位（參加人數置於右欄第一題、飲食需求, 兒童椅, 喜帖寄送方式, 地址） -->
+                <!-- 右欄容器：出席者專屬欄位（參加人數置於右欄第一題、證婚意願、飲食需求, 兒童椅, 喜帖寄送方式, 地址） -->
                 <div class="form-column-right" id="attendee-right-fields">
-                    <!-- 參加人數：提示詞為「請選擇人數（若有小朋友也算在人數內）」 -->
-                    <div class="form-group">
+                    <!-- 參加人數：固定置於右欄第一題，提示詞為「包含本人（若有小朋友也算在人數內）」 -->
+                    <div class="form-group" id="guests-select-group">
                         <label>參加人數 <span class="en">GUESTS</span></label>
                         <select id="guestsSelect">
-                            <option value="" disabled selected>請選擇人數（若有小朋友也算在人數內）</option>
+                            <option value="" disabled selected>包含本人（若有小朋友也算在人數內）</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -1233,6 +1244,25 @@
                     <div class="form-group" id="guests-other-group">
                         <label>請輸入參加人數 <span class="en">NUMBER OF GUESTS</span></label>
                         <input type="number" id="guestsCustomInput" min="1" placeholder="例如：5">
+                    </div>
+
+                    <!-- VIP 專屬：是否參加證婚儀式（?v=ceremony 且點選出席時才出現） -->
+                    <div class="form-group" id="ceremony-field-group">
+                        <label>是否參加證婚儀式 <span class="en">CEREMONY</span></label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="radio" name="entry.857975340" value="會準時參加（11:00 空中花園）">
+                                <span class="checkbox-text">會準時參加<span class="ceremony-note">（11:00 空中花園）</span></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="radio" name="entry.857975340" value="僅參加午宴（11:40 後可入場宴會廳）">
+                                <span class="checkbox-text">僅參加午宴<span class="ceremony-note">（11:40 後可入場宴會廳）</span></span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="radio" name="entry.857975340" value="還不確定！我再訊息告訴你">
+                                <span class="checkbox-text">還不確定！我再訊息告訴你</span>
+                            </label>
+                        </div>
                     </div>
 
                     <!-- 飲食需求 (含「其他」連動輸入框) -->
@@ -1261,16 +1291,17 @@
                         </select>
                     </div>
 
+                    <!-- 喜帖寄送方式：電子喜帖先，再紙本喜帖 -->
                     <div class="form-group">
                         <label>喜帖寄送方式（可複選） <span class="en">INVITATION TYPE</span></label>
                         <div class="checkbox-group">
                             <label class="checkbox-item">
-                                <input type="checkbox" name="entry.1214037399" value="紙本喜帖" id="paperInviteCheckbox">
-                                <span class="checkbox-text">紙本喜帖</span>
-                            </label>
-                            <label class="checkbox-item">
                                 <input type="checkbox" name="entry.1214037399" value="電子喜帖" id="electronicInviteCheckbox">
                                 <span class="checkbox-text">電子喜帖</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="entry.1214037399" value="紙本喜帖" id="paperInviteCheckbox">
+                                <span class="checkbox-text">紙本喜帖</span>
                             </label>
                         </div>
                     </div>
@@ -1311,12 +1342,25 @@
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(window.submitted) { alert('感謝您的回覆，我們已收到您的祝福！期待與您分享這份喜悅！'); window.location.reload(); }"></iframe>
 
     <script>
+        // 0. 網址參數判斷：是否為 VIP 證婚版 (?v=ceremony)
+        const urlParams = new URLSearchParams(window.location.search);
+        const isCeremonyVIP = urlParams.get('v') === 'ceremony';
+
+        // 若為證婚 VIP，開啟第三屏時程中的證婚項目
+        if (isCeremonyVIP) {
+            document.querySelectorAll('.ceremony-timeline-item').forEach(el => {
+                el.style.display = 'block';
+            });
+        }
+
         // 1. 處理是否出席單選勾選連動邏輯
         const formElement = document.getElementById('rsvpForm');
         const attendanceRadios = document.querySelectorAll('input[name="entry.10225308"]');
         const attendeeLeftFields = document.getElementById('attendee-left-fields');
         const attendeeRightFields = document.getElementById('attendee-right-fields');
         const blessingGroup = document.getElementById('blessing-field-group');
+        const ceremonyFieldGroup = document.getElementById('ceremony-field-group');
+        const ceremonyRadios = document.querySelectorAll('input[name="entry.857975340"]');
         
         const phoneInput = document.getElementById('phoneInput');
         const emailInput = document.getElementById('emailInput');
@@ -1343,6 +1387,11 @@
                 attendeeLeftFields.style.display = 'block';
                 attendeeRightFields.style.display = 'block';
                 
+                // 若為證婚 VIP，展示證婚調查問題
+                if (isCeremonyVIP) {
+                    ceremonyFieldGroup.style.display = 'block';
+                }
+                
                 // 加入必填屬性
                 phoneInput.setAttribute('required', 'required');
                 emailInput.setAttribute('required', 'required');
@@ -1366,16 +1415,18 @@
                 if (paperCheckbox.checked) {
                     addressInput.setAttribute('required', 'required');
                 }
-            } else if (value === '無法QQ，寫下給你們的祝福') {
+            } else if (value === '無法Q_Q，寫下給你們的祝福') {
                 // 切換為單欄滿版模式
                 formElement.classList.remove('two-columns');
                 
                 // 隱藏所有出席題目
                 attendeeLeftFields.style.display = 'none';
                 attendeeRightFields.style.display = 'none';
+                ceremonyFieldGroup.style.display = 'none';
                 
-                // 不出席時，強制清空參加人數值（確保後台試算表為完全空白無內容）
+                // 不出席時，強制清空參加人數值與證婚單選（確保後台試算表為完全空白無內容）
                 realGuestsInput.value = '';
+                ceremonyRadios.forEach(r => r.checked = false);
                 
                 // 移除必填驗證，避免送出受阻
                 phoneInput.removeAttribute('required');
@@ -1466,16 +1517,27 @@
                     return false;
                 }
 
+                // 證婚 VIP 專屬驗證：若為證婚邀請且出席，檢查是否已勾選證婚意願
+                if (isCeremonyVIP) {
+                    const ceremonyChecked = document.querySelector('input[name="entry.857975340"]:checked');
+                    if (!ceremonyChecked) {
+                        e.preventDefault();
+                        alert('請選擇是否參加證婚儀式！');
+                        return false;
+                    }
+                }
+
                 // 驗證喜帖寄送方式：紙本與電子喜帖至少需勾選一項（可單選也可複選）
                 if (!paperCheckbox.checked && !electronicCheckbox.checked) {
                     e.preventDefault();
-                    paperCheckbox.focus();
-                    alert('請至少勾選一種喜帖寄送方式（紙本或電子喜帖）！');
+                    electronicCheckbox.focus();
+                    alert('請至少勾選一種喜帖寄送方式（電子或紙本喜帖）！');
                     return false;
                 }
-            } else if (currentAttendance === '無法QQ，寫下給你們的祝福') {
+            } else if (currentAttendance === '無法Q_Q，寫下給你們的祝福') {
                 // 確保送出不出席時，人數欄位為空
                 realGuestsInput.value = '';
+                ceremonyRadios.forEach(r => r.checked = false);
             }
 
             const btn = document.getElementById('submitBtn');
