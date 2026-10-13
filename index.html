@@ -1196,7 +1196,7 @@
                         </select>
                     </div>
 
-                    <!-- 是否出席：單選框（value 嚴格對應 Google 表單後台選項，畫面呈現 Q_Q） -->
+                    <!-- 是否出席：單選框 -->
                     <div class="form-group">
                         <label>是否出席 <span class="en">ATTENDANCE</span></label>
                         <div class="checkbox-group">
@@ -1255,7 +1255,7 @@
                                 <span class="checkbox-text">會準時參加<span class="ceremony-note">（11:00 空中花園）</span></span>
                             </label>
                             <label class="checkbox-item">
-                                <input type="radio" name="entry.857975340" value="僅參加午宴（11:40 後可入場宴會廳）">
+                                <input type="radio" name="entry.857975340" value="僅參加午宴（11:40 抵達宴會廳）">
                                 <span class="checkbox-text">僅參加午宴<span class="ceremony-note">（11:40 後可入場宴會廳）</span></span>
                             </label>
                             <label class="checkbox-item">
@@ -1416,7 +1416,6 @@
                     addressInput.setAttribute('required', 'required');
                 }
             } else {
-                // 只要不是「我要去～～」，全數判定為不出席
                 // 切換為單欄滿版模式
                 formElement.classList.remove('two-columns');
                 
